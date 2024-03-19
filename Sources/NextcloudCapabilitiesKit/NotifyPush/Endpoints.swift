@@ -16,6 +16,6 @@ public struct Endpoints {
             return nil
         }
 
-        websocket = notifyPushCapabilities["websocket"] as? String
+        websocket = endpointCaps["websocket"] as? String
     }
 }

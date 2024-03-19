@@ -26,7 +26,7 @@ public struct NotifyPush {
 
     init(capabilities: [String: Any]) {
         guard let notifyPushCapabilities = capabilities["notify_push"] as? [String : Any] else {
-            debugPrint("No files sharing data in received capabilities.")
+            debugPrint("No notifyPush data in received capabilities.")
             available = false
             types = []
             endpoints = nil
