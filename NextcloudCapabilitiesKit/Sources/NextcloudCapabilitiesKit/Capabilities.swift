@@ -1,21 +1,25 @@
 //
 //  Capabilities.swift
-//  HarmonyKit
+//
 //
 //  Created by Claudio Cambra on 19/3/24.
 //
 
 import Foundation
 
-struct Capabilities {
-    init() {
+public struct Capabilities {
+    let filesSharing: FilesSharing
+
+    public init() {
+        filesSharing = FilesSharing()
         debugPrint("Providing defaulted capabilities!")
     }
 
-    init(data: Data) {
+    public init(data: Data) {
         guard let anyJson = try? JSONSerialization.jsonObject(with: data, options: []) else {
             let jsonString = String(data: data, encoding: .utf8) ?? "UNKNOWN"
             debugPrint("Received capabilities is not valid JSON! \(jsonString)")
+            filesSharing = FilesSharing()
             return
         }
 
@@ -26,7 +30,10 @@ struct Capabilities {
         else {
             let jsonString = anyJson as? [String : Any] ?? ["UNKNOWN" : "UNKNOWN"]
             debugPrint("Could not parse share capabilities! \(jsonString)")
+            filesSharing = FilesSharing()
             return
         }
+
+        filesSharing = FilesSharing(capabilities: capabilities)
     }
 }
