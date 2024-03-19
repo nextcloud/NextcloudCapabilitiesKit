@@ -9,9 +9,11 @@ import Foundation
 
 public struct Capabilities {
     public let filesSharing: FilesSharing
+    public let notifyPush: NotifyPush
 
     public init() {
         filesSharing = FilesSharing()
+        notifyPush = NotifyPush()
         debugPrint("Providing defaulted capabilities!")
     }
 
@@ -20,6 +22,7 @@ public struct Capabilities {
             let jsonString = String(data: data, encoding: .utf8) ?? "UNKNOWN"
             debugPrint("Received capabilities is not valid JSON! \(jsonString)")
             filesSharing = FilesSharing()
+            notifyPush = NotifyPush()
             return
         }
 
@@ -31,9 +34,11 @@ public struct Capabilities {
             let jsonString = anyJson as? [String : Any] ?? ["UNKNOWN" : "UNKNOWN"]
             debugPrint("Could not parse share capabilities! \(jsonString)")
             filesSharing = FilesSharing()
+            notifyPush = NotifyPush()
             return
         }
 
         filesSharing = FilesSharing(capabilities: capabilities)
+        notifyPush = NotifyPush(capabilities: capabilities)
     }
 }
