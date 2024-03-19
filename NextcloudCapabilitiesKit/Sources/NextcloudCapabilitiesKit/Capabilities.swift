@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Capabilities {
-    let filesSharing: FilesSharing
+    public let filesSharing: FilesSharing
 
     public init() {
         filesSharing = FilesSharing()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FilesSharing {
+public struct FilesSharing {
     public let apiEnabled: Bool
     public let resharing: Bool
     public let defaultPermissions: Int
