@@ -21,37 +21,10 @@ public struct PublicLink {
     public let remoteExpireDateDays: Int
     public let multipleAllowed: Bool
 
-    init() {
-        enabled = false
-        allowUpload = false
-        supportsUploadOnly = false
-        askOptionalPassword = false
-        passwordEnforced = false
-        expireDateEnforced = false
-        expireDateDays = 1
-        internalExpireDateEnforced = false
-        internalExpireDateDays = 1
-        remoteExpireDateEnforced = false
-        remoteExpireDateDays = 1
-        multipleAllowed = false
-    }
-
-    init(filesSharingCapabilities: [String: Any]) {
+    init?(filesSharingCapabilities: [String: Any]) {
         guard let publicLinkCaps = filesSharingCapabilities["public"] as? [String: Any] else {
             debugPrint("No public link data in received files sharingcapabilities.")
-            enabled = false
-            allowUpload = false
-            supportsUploadOnly = false
-            askOptionalPassword = false
-            passwordEnforced = false
-            expireDateEnforced = false
-            expireDateDays = 1
-            internalExpireDateEnforced = false
-            internalExpireDateDays = 1
-            remoteExpireDateEnforced = false
-            remoteExpireDateDays = 1
-            multipleAllowed = false
-            return
+            return nil
         }
 
         enabled = publicLinkCaps["enabled"] as? Bool ?? false

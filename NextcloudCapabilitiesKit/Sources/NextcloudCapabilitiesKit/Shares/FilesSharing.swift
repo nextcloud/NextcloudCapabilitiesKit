@@ -8,30 +8,16 @@
 import Foundation
 
 public struct FilesSharing {
-    public let email: Email
-    public let publicLink: PublicLink
+    public let email: Email?
+    public let publicLink: PublicLink?
     public let apiEnabled: Bool
     public let resharing: Bool
     public let defaultPermissions: Int
 
-    init() {
-        email = Email()
-        publicLink = PublicLink()
-        apiEnabled = false
-        resharing = false
-        defaultPermissions = 0
-        debugPrint("Providing defaulted share capabilities!")
-    }
-
-    init(capabilities: [String: Any]) {
+    init?(capabilities: [String: Any]) {
         guard let capabilities = capabilities["files_sharing"] as? [String : Any] else {
             debugPrint("No files sharing data in received capabilities.")
-            email = Email()
-            publicLink = PublicLink()
-            apiEnabled = false
-            resharing = false
-            defaultPermissions = 0
-            return
+            return nil
         }
 
         email = Email(filesSharingCapabilities: capabilities)

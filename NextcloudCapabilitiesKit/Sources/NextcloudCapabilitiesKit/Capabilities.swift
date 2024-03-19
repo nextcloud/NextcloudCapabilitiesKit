@@ -8,22 +8,14 @@
 import Foundation
 
 public struct Capabilities {
-    public let filesSharing: FilesSharing
-    public let notifyPush: NotifyPush
+    public let filesSharing: FilesSharing?
+    public let notifyPush: NotifyPush?
 
-    public init() {
-        filesSharing = FilesSharing()
-        notifyPush = NotifyPush()
-        debugPrint("Providing defaulted capabilities!")
-    }
-
-    public init(data: Data) {
+    public init?(data: Data) {
         guard let anyJson = try? JSONSerialization.jsonObject(with: data, options: []) else {
             let jsonString = String(data: data, encoding: .utf8) ?? "UNKNOWN"
             debugPrint("Received capabilities is not valid JSON! \(jsonString)")
-            filesSharing = FilesSharing()
-            notifyPush = NotifyPush()
-            return
+            return nil
         }
 
         guard let jsonDict = anyJson as? [String : Any],
@@ -32,10 +24,8 @@ public struct Capabilities {
               let capabilities = receivedData["capabilities"] as? [String : Any]
         else {
             let jsonString = anyJson as? [String : Any] ?? ["UNKNOWN" : "UNKNOWN"]
-            debugPrint("Could not parse share capabilities! \(jsonString)")
-            filesSharing = FilesSharing()
-            notifyPush = NotifyPush()
-            return
+            debugPrint("Could not parse capabilities! \(jsonString)")
+            return nil
         }
 
         filesSharing = FilesSharing(capabilities: capabilities)

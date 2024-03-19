@@ -10,18 +10,11 @@ import Foundation
 public struct Email {
     public let passwordEnabled: Bool
     public let passwordEnforced: Bool
-
-    init() {
-        passwordEnabled = false
-        passwordEnforced = false
-    }
-
-    init(filesSharingCapabilities: [String: Any]) {
+    
+    init?(filesSharingCapabilities: [String: Any]) {
         guard let emailCaps = filesSharingCapabilities["sharebymail"] as? [String : Any] else {
             debugPrint("No email data in received files sharingcapabilities.")
-            passwordEnabled = false
-            passwordEnforced = false
-            return
+            return nil
         }
 
         if let passwordCapabilities = emailCaps["password"] as? [String : Any] {
