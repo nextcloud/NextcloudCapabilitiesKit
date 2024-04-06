@@ -12,8 +12,8 @@ public struct BruteForce {
     public let allowListed: Bool
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["core"] as? [String : Any] else {
-            debugPrint("No burteforce data in received capabilities.")
+        guard let capabilities = capabilities["bruteforce"] as? [String : Any] else {
+            debugPrint("No bruteforce data in received capabilities.")
             return nil
         }
 
