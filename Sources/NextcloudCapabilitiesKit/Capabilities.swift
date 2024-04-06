@@ -15,6 +15,7 @@ public struct Capabilities {
     public let notifications: Notifications?
     public let dav: Dav?
     public let passwordPolicy: PasswordPolicy?
+    public let spreed: Spreed?
     public let theming: Theming?
     public let userStatus: UserStatus?
     public let filesSharing: FilesSharing?
@@ -44,6 +45,7 @@ public struct Capabilities {
         notifications = Notifications(capabilities: capabilities)
         dav = Dav(capabilities: capabilities)
         passwordPolicy = PasswordPolicy(capabilities: capabilities)
+        spreed = Spreed(capabilities: capabilities)
         theming = Theming(capabilities: capabilities)
         userStatus = UserStatus(capabilities: capabilities)
         filesSharing = FilesSharing(capabilities: capabilities)
