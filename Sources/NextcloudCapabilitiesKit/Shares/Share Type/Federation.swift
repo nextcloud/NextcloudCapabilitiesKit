@@ -15,7 +15,7 @@ public struct Federation {
 
     init?(filesSharingCapabilities: [String: Any]) {
         guard let federationCaps = filesSharingCapabilities["group"] as? [String: Any] else {
-            debugPrint("No group data in received files sharingcapabilities.")
+            debugPrint("No federation data in received files sharingcapabilities.")
             return nil
         }
 

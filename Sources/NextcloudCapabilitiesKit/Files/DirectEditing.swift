@@ -14,7 +14,7 @@ struct DirectEditing {
 
     init?(filesCapabilities: [String: Any]) {
         guard let capabilities = filesCapabilities["directEditing"] as? [String : Any] else {
-            debugPrint("No files sharing data in received capabilities.")
+            debugPrint("No direct editing data in received capabilities.")
             return nil
         }
 
