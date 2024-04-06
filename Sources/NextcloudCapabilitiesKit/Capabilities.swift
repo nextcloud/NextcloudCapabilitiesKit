@@ -12,6 +12,7 @@ public struct Capabilities {
     public let bruteForce: BruteForce?
     public let files: Files?
     public let activity: Activity?
+    public let theming: Theming?
     public let filesSharing: FilesSharing?
     public let notifyPush: NotifyPush?
 
@@ -36,6 +37,7 @@ public struct Capabilities {
         bruteForce = BruteForce(capabilities: capabilities)
         files = Files(capabilities: capabilities)
         activity = Activity(capabilities: capabilities)
+        theming = Theming(capabilities: capabilities)
         filesSharing = FilesSharing(capabilities: capabilities)
         notifyPush = NotifyPush(capabilities: capabilities)
     }
