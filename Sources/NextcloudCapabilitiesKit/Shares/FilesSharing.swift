@@ -12,6 +12,7 @@ public struct FilesSharing {
     public let publicLink: PublicLink?
     public let user: User?
     public let group: Group?
+    public let federation: Federation?
     public let apiEnabled: Bool
     public let resharing: Bool
     public let defaultPermissions: Int
@@ -26,6 +27,7 @@ public struct FilesSharing {
         publicLink = PublicLink(filesSharingCapabilities: capabilities)
         user = User(filesSharingCapabilities: capabilities)
         group = Group(filesSharingCapabilities: capabilities)
+        federation = Federation(filesSharingCapabilities: capabilities)
         apiEnabled = capabilities["api_enabled"] as? Bool ?? false
         resharing = capabilities["resharing"] as? Bool ?? false
         defaultPermissions = capabilities["default_permissions"] as? Int ?? 0
