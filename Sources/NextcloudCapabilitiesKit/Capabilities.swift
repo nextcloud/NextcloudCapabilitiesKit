@@ -10,6 +10,7 @@ import Foundation
 public struct Capabilities {
     public let core: Core?
     public let bruteForce: BruteForce?
+    public let files: Files?
     public let filesSharing: FilesSharing?
     public let notifyPush: NotifyPush?
 
@@ -32,6 +33,7 @@ public struct Capabilities {
 
         core = Core(capabilities: capabilities)
         bruteForce = BruteForce(capabilities: capabilities)
+        files = Files(capabilities: capabilities)
         filesSharing = FilesSharing(capabilities: capabilities)
         notifyPush = NotifyPush(capabilities: capabilities)
     }
