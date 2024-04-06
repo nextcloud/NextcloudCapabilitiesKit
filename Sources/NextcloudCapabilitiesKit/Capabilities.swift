@@ -8,6 +8,7 @@
 import Foundation
 
 public struct Capabilities {
+    public let core: Core?
     public let filesSharing: FilesSharing?
     public let notifyPush: NotifyPush?
 
@@ -28,6 +29,7 @@ public struct Capabilities {
             return nil
         }
 
+        core = Core(capabilities: capabilities)
         filesSharing = FilesSharing(capabilities: capabilities)
         notifyPush = NotifyPush(capabilities: capabilities)
     }
