@@ -14,7 +14,7 @@ public struct Federation {
     let expireDateSupported: Bool
 
     init?(filesSharingCapabilities: [String: Any]) {
-        guard let federationCaps = filesSharingCapabilities["group"] as? [String: Any] else {
+        guard let federationCaps = filesSharingCapabilities["federation"] as? [String: Any] else {
             debugPrint("No federation data in received files sharingcapabilities.")
             return nil
         }

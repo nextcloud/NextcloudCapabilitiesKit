@@ -12,7 +12,7 @@ final class FederationTests: XCTestCase {
 
     func testFederationInitialization() {
         let filesSharingCapabilities: [String: Any] = [
-            "group": [
+            "federation": [
                 "outgoing": true,
                 "incoming": false,
                 "expire_date": [
