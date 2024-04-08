@@ -24,13 +24,10 @@ public struct NotifyPush {
         endpoints = nil
     }
 
-    init(capabilities: [String: Any]) {
+    init?(capabilities: [String: Any]) {
         guard let notifyPushCapabilities = capabilities["notify_push"] as? [String : Any] else {
             debugPrint("No notifyPush data in received capabilities.")
-            available = false
-            types = []
-            endpoints = nil
-            return
+            return nil
         }
 
         available = true
