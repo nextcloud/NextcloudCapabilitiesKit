@@ -22,12 +22,11 @@ Usage
 
 To use `NextcloudCapabilitiesKit` in your project, you first need to fetch the capabilities JSON from your Nextcloud server, which is typically available at a known URL path relative to your Nextcloud domain. Once you have the JSON data, you can parse it as follows:
 
-```
+```swift
 import NextcloudCapabilitiesKit
 import NextcloutKit
 
-// We are assuming the use of NextcloudKit
-// Assuming `jsonData` is your fetched JSON data as `Data`
+// We are assuming the use of NextcloudKit to fetch capabilities data
 
 let ncKit = NextcloudKit()
 ncKit.setup(user: user, userId: user, password: password, urlBase: serverUrl)
