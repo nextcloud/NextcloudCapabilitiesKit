@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ChunkedUpload {
+public struct ChunkedUpload {
     public let maxParallelCount: Int64
     public let maxChunkSize: Int64
 

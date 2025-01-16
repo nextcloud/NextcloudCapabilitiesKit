@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DirectEditing {
+public struct DirectEditing {
     public let url: URL?
     public let etag: String
     public let supportsFileId: Bool
