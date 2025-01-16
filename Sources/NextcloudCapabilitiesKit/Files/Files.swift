@@ -8,15 +8,15 @@
 import Foundation
 
 public struct Files {
-    let bigFileChunking: Bool
-    let blackListedFiles: [String]
-    let directEditing: DirectEditing?
-    let chunkedUpload: ChunkedUpload?
-    let comments: Bool
-    let undelete: Bool
-    let versioning: Bool
-    let versionLabeling: Bool
-    let versionDeletion: Bool
+    public let bigFileChunking: Bool
+    public let blackListedFiles: [String]
+    public let directEditing: DirectEditing?
+    public let chunkedUpload: ChunkedUpload?
+    public let comments: Bool
+    public let undelete: Bool
+    public let versioning: Bool
+    public let versionLabeling: Bool
+    public let versionDeletion: Bool
 
     init?(capabilities: [String: Any]) {
         guard let capabilities = capabilities["files"] as? [String : Any] else {
