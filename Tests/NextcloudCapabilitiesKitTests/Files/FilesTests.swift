@@ -26,6 +26,10 @@ class FilesTests: XCTestCase {
                     "url": "https://example.com/edit",
                     "etag": "12345",
                     "supportsFileId": true
+                ],
+                "chunked_upload": [
+                    "max_size": 100_000_000,
+                    "max_parallel_count": 5
                 ]
             ]
         ]
@@ -41,6 +45,9 @@ class FilesTests: XCTestCase {
         XCTAssertEqual(files?.versioning, false, "Versioning should be false")
         XCTAssertEqual(files?.versionLabeling, true, "Version Labeling should be true")
         XCTAssertEqual(files?.versionDeletion, false, "Version Deletion should be false")
+        XCTAssertNotNil(files?.chunkedUpload, "Chunked Upload should be initialized")
+        XCTAssertEqual(files?.chunkedUpload?.maxChunkSize, 100_000_000)
+        XCTAssertEqual(files?.chunkedUpload?.maxParallelCount, 5)
     }
 
     func testInvalidFilesInitialization() {
@@ -74,5 +81,6 @@ class FilesTests: XCTestCase {
         XCTAssertEqual(files?.versioning, false, "Versioning should be false")
         XCTAssertEqual(files?.versionLabeling, true, "Version Labeling should be true")
         XCTAssertEqual(files?.versionDeletion, false, "Version Deletion should be false")
+        XCTAssertNil(files?.chunkedUpload, "Chunked Upload should be nil when not provided")
     }
 }

@@ -11,6 +11,7 @@ public struct Files {
     let bigFileChunking: Bool
     let blackListedFiles: [String]
     let directEditing: DirectEditing?
+    let chunkedUpload: ChunkedUpload?
     let comments: Bool
     let undelete: Bool
     let versioning: Bool
@@ -26,6 +27,7 @@ public struct Files {
         bigFileChunking = capabilities["bigfilechunking"] as? Bool ?? false
         blackListedFiles = capabilities["blacklisted_files"] as? [String] ?? []
         directEditing = DirectEditing(filesCapabilities: capabilities)
+        chunkedUpload = ChunkedUpload(filesCapabilities: capabilities)
         comments = capabilities["comments"] as? Bool ?? false
         undelete = capabilities["undelete"] as? Bool ?? false
         versioning = capabilities["versioning"] as? Bool ?? false
