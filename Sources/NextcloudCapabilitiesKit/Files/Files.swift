@@ -17,6 +17,7 @@ public struct Files {
     public let versioning: Bool
     public let versionLabeling: Bool
     public let versionDeletion: Bool
+    public let locking: String?
 
     init?(capabilities: [String: Any]) {
         guard let capabilities = capabilities["files"] as? [String : Any] else {
@@ -33,5 +34,6 @@ public struct Files {
         versioning = capabilities["versioning"] as? Bool ?? false
         versionLabeling = capabilities["version_labeling"] as? Bool ?? false
         versionDeletion = capabilities["version_deletion"] as? Bool ?? false
+        locking = capabilities["locking"] as? String ?? nil
     }
 }
