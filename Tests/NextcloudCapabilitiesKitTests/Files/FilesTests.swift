@@ -30,7 +30,8 @@ class FilesTests: XCTestCase {
                 "chunked_upload": [
                     "max_size": 100_000_000,
                     "max_parallel_count": 5
-                ]
+                ],
+                "locking": "1.0"
             ]
         ]
 
@@ -48,6 +49,7 @@ class FilesTests: XCTestCase {
         XCTAssertNotNil(files?.chunkedUpload, "Chunked Upload should be initialized")
         XCTAssertEqual(files?.chunkedUpload?.maxChunkSize, 100_000_000)
         XCTAssertEqual(files?.chunkedUpload?.maxParallelCount, 5)
+        XCTAssertEqual(files?.locking, "1.0", "Locking should match the provided value")
     }
 
     func testInvalidFilesInitialization() {
@@ -82,5 +84,6 @@ class FilesTests: XCTestCase {
         XCTAssertEqual(files?.versionLabeling, true, "Version Labeling should be true")
         XCTAssertEqual(files?.versionDeletion, false, "Version Deletion should be false")
         XCTAssertNil(files?.chunkedUpload, "Chunked Upload should be nil when not provided")
+        XCTAssertNil(files?.locking, "Locking should be nil when not provided")
     }
 }
