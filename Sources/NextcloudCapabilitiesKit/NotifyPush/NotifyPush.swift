@@ -13,7 +13,7 @@ public enum PushNotificationType: String {
     case notifications = "notifications"
 }
 
-public struct NotifyPush {
+public struct NotifyPush: Equatable {
     public let available: Bool
     public let types: Set<PushNotificationType>
     public let endpoints: Endpoints?

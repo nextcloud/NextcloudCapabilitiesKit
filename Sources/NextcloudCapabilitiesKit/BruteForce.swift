@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct BruteForce {
+public struct BruteForce: Equatable {
     public let delay: Int
     public let allowListed: Bool
 

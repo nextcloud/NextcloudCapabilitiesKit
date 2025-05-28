@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct User {
+public struct User: Equatable {
     let sendMail: Bool
     let expireDateEnabled: Bool
 

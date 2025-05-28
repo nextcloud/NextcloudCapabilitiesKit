@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Notifications {
+public struct Notifications: Equatable {
     let ocsEndpoints: [String]
     let push: [String]
     let adminNotifications: [String]

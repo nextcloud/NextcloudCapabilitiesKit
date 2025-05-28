@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Federation {
+public struct Federation: Equatable {
     let outgoing: Bool
     let incoming: Bool
     let expireDateEnabled: Bool

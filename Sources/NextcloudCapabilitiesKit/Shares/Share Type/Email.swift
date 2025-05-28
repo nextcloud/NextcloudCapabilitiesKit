@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Email {
+public struct Email: Equatable {
     public let passwordEnabled: Bool
     public let passwordEnforced: Bool
     
