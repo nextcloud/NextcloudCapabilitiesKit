@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Files {
+public struct Files: Equatable {
     public let bigFileChunking: Bool
     public let blackListedFiles: [String]
     public let directEditing: DirectEditing?

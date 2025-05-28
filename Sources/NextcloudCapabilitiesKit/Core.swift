@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Core {
+public struct Core: Equatable {
     let pollInterval: Int
     let webdavRoot: String
     let referenceApi: Bool

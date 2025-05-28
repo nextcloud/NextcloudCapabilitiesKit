@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SpreedAttachments {
+struct SpreedAttachments: Equatable {
     let allowed: Bool
     let folder: String
 

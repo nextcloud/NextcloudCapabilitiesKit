@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SpreedConfig {
+struct SpreedConfig: Equatable {
     let attachments: SpreedAttachments?
     let call: SpreedCall?
     let chat: SpreedChat?

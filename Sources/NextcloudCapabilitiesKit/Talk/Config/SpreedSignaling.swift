@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SpreedSignaling {
+struct SpreedSignaling: Equatable {
     let sessionPingLimit: Int
     let helloV2TokenKey: String
 

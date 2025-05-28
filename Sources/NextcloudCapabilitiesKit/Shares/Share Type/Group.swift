@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Group {
+public struct Group: Equatable {
     let enabled: Bool
     let expireDateEnabled: Bool
 

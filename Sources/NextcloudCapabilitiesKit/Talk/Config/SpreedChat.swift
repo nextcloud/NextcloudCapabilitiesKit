@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SpreedChat {
+struct SpreedChat: Equatable {
     let maxLength: Int
     let readPrivacy: Int
     let typingPrivacy: Int

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SpreedCall {
+struct SpreedCall: Equatable {
     let enabled: Bool
     let breakoutRooms: Bool
     let recording: Bool

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Activity {
+public struct Activity: Equatable {
     public let apiV2: [String]
 
     init?(capabilities: [String: Any]) {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Spreed {
+public struct Spreed: Equatable {
     let config: SpreedConfig?
     let features: [String]
     let version: String

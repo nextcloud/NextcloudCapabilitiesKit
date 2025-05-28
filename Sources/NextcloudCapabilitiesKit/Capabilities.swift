@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Capabilities {
+public struct Capabilities: Equatable {
     public let core: Core?
     public let bruteForce: BruteForce?
     public let files: Files?
