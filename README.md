@@ -1,3 +1,8 @@
+<!--
+  - SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 <div align="center">
     <img src="NextcloudCapabilitiesKit.svg" alt="Logo of NextcloudCapabilitiesKit" width="256" height="256" />
 </div>
