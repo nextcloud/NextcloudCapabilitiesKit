@@ -1,7 +1,12 @@
-NextcloudCapabilitiesKit
-========================
+<div align="center">
+    <img src="NextcloudCapabilitiesKit.svg" alt="Logo of NextcloudCapabilitiesKit" width="256" height="256" />
+</div>
 
-`NextcloudCapabilitiesKit` is a Swift library tailored for parsing and handling capabilities information from a Nextcloud server. It provides a structured way to access detailed features available on the server, including core settings, file handling capabilities, notifications, theming, and more, directly through Swift data structures.
+Nextcloud Capabilities Kit
+==========================
+
+`NextcloudCapabilitiesKit` is a Swift library tailored for parsing and handling capabilities information from a Nextcloud server.
+It provides a structured way to access detailed features available on the server, including core settings, file handling capabilities, notifications, theming, and more, directly through Swift data structures.
 
 Features
 --------
