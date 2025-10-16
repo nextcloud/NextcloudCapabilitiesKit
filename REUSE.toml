@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: LGPL-3.0-or-later
 version = 1
 SPDX-PackageName = "NextcloudCapabilitiesKit"
 SPDX-PackageSupplier = "2025 Nextcloud GmbH and Nextcloud contributors"
@@ -21,5 +21,5 @@ path = [
     ".swift-version"
 ]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2025 Nextcloud GmbH"
-SPDX-License-Identifier = "LicenseRef-NextcloudTrademarks"
+SPDX-FileCopyrightText = "2025 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "LGPL-3.0-or-later"
