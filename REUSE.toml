@@ -7,9 +7,9 @@ SPDX-PackageDownloadLocation = "https://github.com/nextcloud/NextcloudCapabiliti
 
 [[annotations]]
 path = [
-    "NextcloudKit.png", 
-    "NextcloudKit.pxd", 
-    "NextcloudKit.svg"
+    "NextcloudCapabilitiesKit.png", 
+    "NextcloudCapabilitiesKit.pxd", 
+    "NextcloudCapabilitiesKit.svg"
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2024 Nextcloud GmbH"
