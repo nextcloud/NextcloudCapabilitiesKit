@@ -31,7 +31,7 @@ jobs:
           $(xcrun --find docc) process-archive \
             transform-for-static-hosting ./DerivedData/Build/Products/Debug/NextcloudCapabilitiesKit.doccarchive \
             --output-path ./docs \
-            --hosting-base-path /nextcloudcapabilitieskit
+            --hosting-base-path /NextcloudCapabilitiesKit
       - name: Create root redirect
         run: |
           cat > ./docs/index.html << 'EOF'
