@@ -13,7 +13,7 @@ public struct Spreed: Equatable {
     let version: String
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["spreed"] as? [String : Any] else {
+        guard let capabilities = capabilities["spreed"] as? [String: Any] else {
             debugPrint("No spreed data in received capabilities.")
             return nil
         }

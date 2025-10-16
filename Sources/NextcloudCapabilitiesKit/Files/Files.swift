@@ -20,7 +20,7 @@ public struct Files: Equatable {
     public let locking: String?
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["files"] as? [String : Any] else {
+        guard let capabilities = capabilities["files"] as? [String: Any] else {
             debugPrint("No files data in received capabilities.")
             return nil
         }

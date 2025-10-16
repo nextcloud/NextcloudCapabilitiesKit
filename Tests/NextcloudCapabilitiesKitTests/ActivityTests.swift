@@ -1,21 +1,20 @@
 //
 //  ActivityTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class ActivityTests: XCTestCase {
-
     func testActivityInitializationWithValidCapabilities() {
         // Valid activity capabilities
         let capabilities: [String: Any] = [
             "activity": [
-                "apiv2": ["endpoint1", "endpoint2"]
-            ]
+                "apiv2": ["endpoint1", "endpoint2"],
+            ],
         ]
 
         let activity = Activity(capabilities: capabilities)

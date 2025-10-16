@@ -5,23 +5,22 @@
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 final class FederationTests: XCTestCase {
-
     func testFederationInitialization() {
         let filesSharingCapabilities: [String: Any] = [
             "federation": [
                 "outgoing": true,
                 "incoming": false,
                 "expire_date": [
-                    "enabled": true
+                    "enabled": true,
                 ],
                 "expire_date_supported": [
-                    "enabled": false
-                ]
-            ]
+                    "enabled": false,
+                ],
+            ],
         ]
 
         let federation = Federation(filesSharingCapabilities: filesSharingCapabilities)

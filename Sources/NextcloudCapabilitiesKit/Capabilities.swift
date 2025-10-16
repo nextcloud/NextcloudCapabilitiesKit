@@ -28,12 +28,12 @@ public struct Capabilities: Equatable {
             return nil
         }
 
-        guard let jsonDict = anyJson as? [String : Any],
-              let ocsData = jsonDict["ocs"] as? [String : Any],
-              let receivedData = ocsData["data"] as? [String : Any],
-              let capabilities = receivedData["capabilities"] as? [String : Any]
+        guard let jsonDict = anyJson as? [String: Any],
+              let ocsData = jsonDict["ocs"] as? [String: Any],
+              let receivedData = ocsData["data"] as? [String: Any],
+              let capabilities = receivedData["capabilities"] as? [String: Any]
         else {
-            let jsonString = anyJson as? [String : Any] ?? ["UNKNOWN" : "UNKNOWN"]
+            let jsonString = anyJson as? [String: Any] ?? ["UNKNOWN": "UNKNOWN"]
             debugPrint("Could not parse capabilities! \(jsonString)")
             return nil
         }

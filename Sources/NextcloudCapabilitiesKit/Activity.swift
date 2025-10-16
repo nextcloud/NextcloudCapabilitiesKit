@@ -11,7 +11,7 @@ public struct Activity: Equatable {
     public let apiV2: [String]
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["activity"] as? [String : Any] else {
+        guard let capabilities = capabilities["activity"] as? [String: Any] else {
             debugPrint("No activity data in received capabilities.")
             return nil
         }

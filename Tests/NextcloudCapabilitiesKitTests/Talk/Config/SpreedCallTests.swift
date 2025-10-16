@@ -1,6 +1,6 @@
 //
 //  SpreedCallTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
@@ -10,7 +10,6 @@ import XCTest
 @testable import NextcloudCapabilitiesKit
 
 class SpreedCallTests: XCTestCase {
-
     func testSpreedCallInitializationWithValidCapabilities() {
         // Valid spreed call capabilities
         let validCapabilities: [String: Any] = [
@@ -20,8 +19,8 @@ class SpreedCallTests: XCTestCase {
                 "recording": true,
                 "can-upload-background": true,
                 "supported-reactions": ["like", "love"],
-                "predefined-backgrounds": ["mountains", "beach"]
-            ]
+                "predefined-backgrounds": ["mountains", "beach"],
+            ],
         ]
 
         let spreedCall = SpreedCall(spreedConfigCapabilities: validCapabilities)
@@ -46,8 +45,8 @@ class SpreedCallTests: XCTestCase {
         // Partial spreed call capabilities
         let partialCapabilities: [String: Any] = [
             "call": [
-                "enabled": true
-            ]
+                "enabled": true,
+            ],
         ]
 
         let spreedCall = SpreedCall(spreedConfigCapabilities: partialCapabilities)

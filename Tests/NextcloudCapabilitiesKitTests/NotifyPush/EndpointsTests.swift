@@ -1,6 +1,6 @@
 //
 //  EndpointsTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
@@ -10,13 +10,12 @@ import XCTest
 @testable import NextcloudCapabilitiesKit
 
 class EndpointsTests: XCTestCase {
-
     func testValidEndpointsInitialization() {
         // Valid endpoint capabilities
         let validCapabilities: [String: Any] = [
             "endpoints": [
-                "websocket": "ws://example.com/websocket"
-            ]
+                "websocket": "ws://example.com/websocket",
+            ],
         ]
 
         let endpoints = Endpoints(notifyPushCapabilities: validCapabilities)
@@ -34,7 +33,7 @@ class EndpointsTests: XCTestCase {
     func testPartiallyValidEndpointsInitialization() {
         // Partially valid endpoint capabilities with some values missing
         let partialCapabilities: [String: Any] = [
-            "endpoints": [:]
+            "endpoints": [:],
         ]
 
         let endpoints = Endpoints(notifyPushCapabilities: partialCapabilities)

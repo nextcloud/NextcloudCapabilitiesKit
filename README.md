@@ -63,6 +63,16 @@ Contributing
 
 Contributions to `NextcloudCapabilitiesKit` are welcome! Whether you're fixing bugs, adding new features, or improving documentation, please feel free to submit a pull request or open an issue.
 
+### Code Style
+
+[SwiftFormat](https://github.com/nicklockwood/SwiftFormat) was introduced into this project.
+Before submitting a pull request, please ensure that your code changes comply with the currently configured code style.
+You can run the following command in the root of the package repository clone:
+
+```bash
+swift package plugin --allow-writing-to-package-directory swiftformat --verbose --cache ignore
+```
+
 License
 -------
 

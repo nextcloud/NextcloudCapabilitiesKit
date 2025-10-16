@@ -27,6 +27,5 @@ struct SpreedCall: Equatable {
         canUploadBackground = spreedCallCaps["can-upload-background"] as? Bool ?? false
         supportedReactions = spreedCallCaps["supported-reactions"] as? [String] ?? []
         predefinedBackgrounds = spreedCallCaps["predefined-backgrounds"] as? [String] ?? []
-
     }
 }

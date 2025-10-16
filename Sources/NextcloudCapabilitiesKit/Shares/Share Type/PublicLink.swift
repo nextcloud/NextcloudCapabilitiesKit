@@ -32,7 +32,7 @@ public struct PublicLink: Equatable {
         supportsUploadOnly = publicLinkCaps["supports_upload_only"] as? Bool ?? false
         multipleAllowed = publicLinkCaps["multiple"] as? Bool ?? false
 
-        if let passwordCaps = publicLinkCaps["password"] as? [String : Any] {
+        if let passwordCaps = publicLinkCaps["password"] as? [String: Any] {
             askOptionalPassword = passwordCaps["askForOptionalPassword"] as? Bool ?? false
             passwordEnforced = passwordCaps["enforced"] as? Bool ?? false
         } else {

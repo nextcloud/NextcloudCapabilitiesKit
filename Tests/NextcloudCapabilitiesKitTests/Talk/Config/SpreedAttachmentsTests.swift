@@ -1,22 +1,21 @@
 //
 //  SpreedAttachmentsTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class SpreedAttachmentsTests: XCTestCase {
-
     func testSpreedAttachmentsInitializationWithValidCapabilities() {
         // Valid spreed attachment capabilities
         let validCapabilities: [String: Any] = [
             "attachments": [
                 "allowed": true,
-                "folder": "uploads"
-            ]
+                "folder": "uploads",
+            ],
         ]
 
         let spreedAttachments = SpreedAttachments(spreedConfigCapabilities: validCapabilities)
@@ -30,8 +29,8 @@ class SpreedAttachmentsTests: XCTestCase {
         // Partial spreed attachment capabilities
         let partialCapabilities: [String: Any] = [
             "attachments": [
-                "allowed": true
-            ]
+                "allowed": true,
+            ],
         ]
 
         let spreedAttachments = SpreedAttachments(spreedConfigCapabilities: partialCapabilities)

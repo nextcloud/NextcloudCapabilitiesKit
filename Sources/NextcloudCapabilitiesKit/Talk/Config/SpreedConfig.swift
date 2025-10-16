@@ -16,7 +16,7 @@ struct SpreedConfig: Equatable {
     let previewsMaxGifSize: Int
 
     init?(spreedCapabilities: [String: Any]) {
-        guard let spreedConfigCapabilities = spreedCapabilities["config"] as? [String : Any] else {
+        guard let spreedConfigCapabilities = spreedCapabilities["config"] as? [String: Any] else {
             debugPrint("No config data in received spreed capabilities.")
             return nil
         }

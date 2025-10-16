@@ -5,17 +5,16 @@
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class NotifyPushTests: XCTestCase {
-
     func testNotifyPushInitializationWithValidCapabilities() {
         // Valid notify push capabilities
         let validCapabilities: [String: Any] = [
             "notify_push": [
-                "type": ["files", "activities"]
-            ]
+                "type": ["files", "activities"],
+            ],
         ]
 
         let notifyPush = NotifyPush(capabilities: validCapabilities)
@@ -37,8 +36,8 @@ class NotifyPushTests: XCTestCase {
         // Partially valid notify push capabilities
         let partiallyValidCapabilities: [String: Any] = [
             "notify_push": [
-                "type": ["files", "invalidType"]
-            ]
+                "type": ["files", "invalidType"],
+            ],
         ]
 
         let notifyPush = NotifyPush(capabilities: partiallyValidCapabilities)

@@ -1,15 +1,14 @@
 //
 //  SpreedChatTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class SpreedChatTests: XCTestCase {
-
     func testSpreedChatInitializationWithValidCapabilities() {
         // Valid spreed chat capabilities
         let validCapabilities: [String: Any] = [
@@ -17,8 +16,8 @@ class SpreedChatTests: XCTestCase {
                 "max-length": 100,
                 "read-privacy": 1,
                 "typing-privacy": 2,
-                "translations": ["en", "fr", "de"]
-            ]
+                "translations": ["en", "fr", "de"],
+            ],
         ]
 
         let spreedChat = SpreedChat(spreedConfigCapabilities: validCapabilities)
@@ -40,8 +39,8 @@ class SpreedChatTests: XCTestCase {
         // Partial spreed chat capabilities
         let partialCapabilities: [String: Any] = [
             "chat": [
-                "max-length": 150
-            ]
+                "max-length": 150,
+            ],
         ]
 
         let spreedChat = SpreedChat(spreedConfigCapabilities: partialCapabilities)

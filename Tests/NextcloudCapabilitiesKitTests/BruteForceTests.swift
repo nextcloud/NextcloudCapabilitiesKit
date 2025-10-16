@@ -1,22 +1,21 @@
 //
 //  BruteForceTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class BruteForceTests: XCTestCase {
-
     func testBruteForceInitializationWithValidCapabilities() {
         // Valid bruteforce capabilities
         let capabilities: [String: Any] = [
             "bruteforce": [
                 "delay": 5,
-                "allow-listed": true
-            ]
+                "allow-listed": true,
+            ],
         ]
 
         let bruteForce = BruteForce(capabilities: capabilities)
@@ -37,8 +36,8 @@ class BruteForceTests: XCTestCase {
         let capabilities: [String: Any] = [
             "bruteforce": [
                 // Only providing part of the required properties
-                "delay": 10
-            ]
+                "delay": 10,
+            ],
         ]
 
         let bruteForce = BruteForce(capabilities: capabilities)

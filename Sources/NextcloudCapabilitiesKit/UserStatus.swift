@@ -13,7 +13,7 @@ public struct UserStatus: Equatable {
     let supportsEmoji: Bool
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["user_status"] as? [String : Any] else {
+        guard let capabilities = capabilities["user_status"] as? [String: Any] else {
             debugPrint("No user status data in received capabilities.")
             return nil
         }

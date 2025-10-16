@@ -1,15 +1,14 @@
 //
 //  ThemingTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class ThemingTests: XCTestCase {
-
     func testThemingInitializationWithValidCapabilities() {
         // Valid theming capabilities
         let capabilities: [String: Any] = [
@@ -27,8 +26,8 @@ class ThemingTests: XCTestCase {
                 "background-plain": true,
                 "background-default": false,
                 "logoheader": "https://example.com/logoheader",
-                "favicon": "https://example.com/favicon"
-            ]
+                "favicon": "https://example.com/favicon",
+            ],
         ]
 
         let theming = Theming(capabilities: capabilities)
@@ -63,8 +62,8 @@ class ThemingTests: XCTestCase {
                 // Only providing part of the required properties
                 "name": "Partial Theme",
                 "slogan": "Partial Slogan",
-                "color": "#AAAAAA"
-            ]
+                "color": "#AAAAAA",
+            ],
         ]
 
         let theming = Theming(capabilities: capabilities)

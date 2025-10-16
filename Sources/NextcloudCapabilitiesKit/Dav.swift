@@ -12,7 +12,7 @@ public struct Dav: Equatable {
     let bulkUpload: String
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["dav"] as? [String : Any] else {
+        guard let capabilities = capabilities["dav"] as? [String: Any] else {
             debugPrint("No dav data in received capabilities.")
             return nil
         }

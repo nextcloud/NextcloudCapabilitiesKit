@@ -14,7 +14,7 @@ public struct Core: Equatable {
     let referenceRegex: String
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["core"] as? [String : Any] else {
+        guard let capabilities = capabilities["core"] as? [String: Any] else {
             debugPrint("No core data in received capabilities.")
             return nil
         }

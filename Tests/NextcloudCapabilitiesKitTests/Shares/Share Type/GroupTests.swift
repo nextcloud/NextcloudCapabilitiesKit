@@ -5,19 +5,18 @@
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 final class GroupTests: XCTestCase {
-
     func testGroupInitialization() {
         let filesSharingCapabilities: [String: Any] = [
             "group": [
                 "enabled": true,
                 "expire_date": [
-                    "enabled": false
-                ]
-            ]
+                    "enabled": false,
+                ],
+            ],
         ]
 
         let group = Group(filesSharingCapabilities: filesSharingCapabilities)

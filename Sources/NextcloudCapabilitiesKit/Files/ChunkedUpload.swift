@@ -5,7 +5,6 @@
 //  Created by Claudio Cambra on 16/1/25.
 //
 
-
 import Foundation
 
 public struct ChunkedUpload: Equatable {
@@ -13,7 +12,7 @@ public struct ChunkedUpload: Equatable {
     public let maxChunkSize: Int64
 
     init?(filesCapabilities: [String: Any]) {
-        guard let capabilities = filesCapabilities["chunked_upload"] as? [String : Any] else {
+        guard let capabilities = filesCapabilities["chunked_upload"] as? [String: Any] else {
             debugPrint("No chunked upload data in received capabilities.")
             return nil
         }

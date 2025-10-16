@@ -1,24 +1,23 @@
 //
 //  UserTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class UserTests: XCTestCase {
-
     func testValidUserInitialization() {
         // Valid user data with all required subobjects
         let validFilesSharingCapabilities: [String: Any] = [
             "user": [
                 "send_mail": true,
                 "expire_date": [
-                    "enabled": true
-                ]
-            ]
+                    "enabled": true,
+                ],
+            ],
         ]
 
         let user = User(filesSharingCapabilities: validFilesSharingCapabilities)
@@ -38,7 +37,7 @@ class UserTests: XCTestCase {
             "user": [
                 "send_mail": true,
                 // Missing "expire_date" subobject
-            ]
+            ],
         ]
 
         let user = User(filesSharingCapabilities: partialFilesSharingCapabilities)

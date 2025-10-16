@@ -1,23 +1,22 @@
 //
 //  DirectEditingTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class DirectEditingTests: XCTestCase {
-
     func testValidDirectEditingInitialization() {
         // Valid direct editing capabilities
         let validCapabilities: [String: Any] = [
             "directEditing": [
                 "url": "https://example.com/edit",
                 "etag": "12345",
-                "supportsFileId": true
-            ]
+                "supportsFileId": true,
+            ],
         ]
 
         let directEditing = DirectEditing(filesCapabilities: validCapabilities)
@@ -40,8 +39,8 @@ class DirectEditingTests: XCTestCase {
         let partialCapabilities: [String: Any] = [
             "directEditing": [
                 // Missing "url" and "etag" values
-                "supportsFileId": true
-            ]
+                "supportsFileId": true,
+            ],
         ]
 
         let directEditing = DirectEditing(filesCapabilities: partialCapabilities)

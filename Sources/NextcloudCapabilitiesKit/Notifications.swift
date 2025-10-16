@@ -13,7 +13,7 @@ public struct Notifications: Equatable {
     let adminNotifications: [String]
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["notifications"] as? [String : Any] else {
+        guard let capabilities = capabilities["notifications"] as? [String: Any] else {
             debugPrint("No notifications data in received capabilities.")
             return nil
         }

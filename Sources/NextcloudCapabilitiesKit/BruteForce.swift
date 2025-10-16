@@ -12,7 +12,7 @@ public struct BruteForce: Equatable {
     public let allowListed: Bool
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["bruteforce"] as? [String : Any] else {
+        guard let capabilities = capabilities["bruteforce"] as? [String: Any] else {
             debugPrint("No bruteforce data in received capabilities.")
             return nil
         }

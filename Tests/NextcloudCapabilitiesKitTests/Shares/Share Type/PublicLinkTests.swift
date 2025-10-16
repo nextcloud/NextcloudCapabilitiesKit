@@ -1,15 +1,14 @@
 //
 //  PublicLinkTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 final class PublicLinkTests: XCTestCase {
-
     func testPublicLinkInitialization() {
         let filesSharingCapabilities: [String: Any] = [
             "public": [
@@ -19,21 +18,21 @@ final class PublicLinkTests: XCTestCase {
                 "multiple": false,
                 "password": [
                     "askForOptionalPassword": true,
-                    "enforced": false
+                    "enforced": false,
                 ],
                 "expire_date": [
                     "days": 10,
-                    "enforced": true
+                    "enforced": true,
                 ],
                 "expire_date_internal": [
                     "days": 5,
-                    "enforced": true
+                    "enforced": true,
                 ],
                 "expire_date_remote": [
                     "days": 7,
-                    "enforced": false
-                ]
-            ]
+                    "enforced": false,
+                ],
+            ],
         ]
 
         let publicLink = PublicLink(filesSharingCapabilities: filesSharingCapabilities)
@@ -57,7 +56,7 @@ final class PublicLinkTests: XCTestCase {
         let invalidFilesSharingCapabilities: [String: Any] = [
             "invalid_key": [
                 "enabled": true,
-            ]
+            ],
         ]
 
         let publicLink = PublicLink(filesSharingCapabilities: invalidFilesSharingCapabilities)
@@ -69,7 +68,7 @@ final class PublicLinkTests: XCTestCase {
             "public": [
                 "enabled": true,
                 "upload": false,
-            ]
+            ],
         ]
 
         let publicLink = PublicLink(filesSharingCapabilities: partialFilesSharingCapabilities)

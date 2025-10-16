@@ -13,7 +13,7 @@ public struct DirectEditing: Equatable {
     public let supportsFileId: Bool
 
     init?(filesCapabilities: [String: Any]) {
-        guard let capabilities = filesCapabilities["directEditing"] as? [String : Any] else {
+        guard let capabilities = filesCapabilities["directEditing"] as? [String: Any] else {
             debugPrint("No direct editing data in received capabilities.")
             return nil
         }

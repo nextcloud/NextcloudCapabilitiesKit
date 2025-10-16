@@ -1,15 +1,14 @@
 //
 //  CapabilitiesTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class CapabilitiesTests: XCTestCase {
-
     func testCapabilitiesInitializationWithValidData() {
         // Valid capabilities data
         let validData = """

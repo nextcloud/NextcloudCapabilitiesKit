@@ -1,15 +1,14 @@
 //
 //  PasswordPolicyTests.swift
-//  
+//
 //
 //  Created by Claudio Cambra on 8/4/24.
 //
 
-import XCTest
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class PasswordPolicyTests: XCTestCase {
-
     func testPasswordPolicyInitializationWithValidCapabilities() {
         // Valid password policy capabilities
         let capabilities: [String: Any] = [
@@ -21,9 +20,9 @@ class PasswordPolicyTests: XCTestCase {
                 "enforceUpperLowerCase": true,
                 "api": [
                     "generate": "https://example.com/generate",
-                    "validate": "https://example.com/validate"
-                ]
-            ]
+                    "validate": "https://example.com/validate",
+                ],
+            ],
         ]
 
         let passwordPolicy = PasswordPolicy(capabilities: capabilities)
@@ -50,10 +49,10 @@ class PasswordPolicyTests: XCTestCase {
             "password_policy": [
                 // Only providing part of the required properties
                 "minLength": 6,
-                "enforceUpperLowerCase": false
-            ]
+                "enforceUpperLowerCase": false,
+            ],
         ]
-        
+
         let passwordPolicy = PasswordPolicy(capabilities: capabilities)
         XCTAssertNotNil(passwordPolicy, "PasswordPolicy instance should be created with partial input")
         XCTAssertEqual(passwordPolicy?.minLength, 6, "PasswordPolicy minLength should match the provided value with partial input")

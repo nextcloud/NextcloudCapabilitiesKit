@@ -19,7 +19,7 @@ public struct FilesSharing: Equatable {
     public let defaultPermissions: Int
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["files_sharing"] as? [String : Any] else {
+        guard let capabilities = capabilities["files_sharing"] as? [String: Any] else {
             debugPrint("No files sharing data in received capabilities.")
             return nil
         }

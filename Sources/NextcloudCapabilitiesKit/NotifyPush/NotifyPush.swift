@@ -8,9 +8,9 @@
 import Foundation
 
 public enum PushNotificationType: String {
-    case files = "files"
-    case activities = "activities"
-    case notifications = "notifications"
+    case files
+    case activities
+    case notifications
 }
 
 public struct NotifyPush: Equatable {
@@ -25,13 +25,13 @@ public struct NotifyPush: Equatable {
     }
 
     init?(capabilities: [String: Any]) {
-        guard let notifyPushCapabilities = capabilities["notify_push"] as? [String : Any] else {
+        guard let notifyPushCapabilities = capabilities["notify_push"] as? [String: Any] else {
             debugPrint("No notifyPush data in received capabilities.")
             return nil
         }
 
         available = true
-        
+
         let receivedTypes = notifyPushCapabilities["type"] as? [String] ?? []
         var gatheredTypes: Set<PushNotificationType> = []
         for receivedType in receivedTypes {

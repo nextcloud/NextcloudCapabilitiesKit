@@ -17,7 +17,7 @@ public struct PasswordPolicy: Equatable {
     let apiValidateUrl: URL?
 
     init?(capabilities: [String: Any]) {
-        guard let capabilities = capabilities["password_policy"] as? [String : Any] else {
+        guard let capabilities = capabilities["password_policy"] as? [String: Any] else {
             debugPrint("No password policy data in received capabilities.")
             return nil
         }
