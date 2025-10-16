@@ -1,9 +1,5 @@
-//
-//  Endpoints.swift
-//
-//
-//  Created by Claudio Cambra on 20/3/24.
-//
+//  SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+//  SPDX-License-Identifier: GPL-3.0-or-later
 
 import Foundation
 
