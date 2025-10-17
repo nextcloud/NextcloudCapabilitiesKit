@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Federation: Equatable {
+public struct Federation: Equatable, Sendable {
     let outgoing: Bool
     let incoming: Bool
     let expireDateEnabled: Bool

@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Sharee: Equatable {
+public struct Sharee: Equatable, Sendable {
     let queryLookupDefault: Bool
     let alwaysShowUnique: Bool
 

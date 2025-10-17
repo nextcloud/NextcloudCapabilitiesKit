@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Theming: Equatable {
+public struct Theming: Equatable, Sendable {
     let name: String
     let url: URL?
     let slogan: String

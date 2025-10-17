@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Dav: Equatable {
+public struct Dav: Equatable, Sendable {
     let chunking: String
     let bulkUpload: String
 

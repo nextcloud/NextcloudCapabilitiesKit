@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct UserStatus: Equatable {
+public struct UserStatus: Equatable, Sendable {
     let enabled: Bool
     let restore: Bool
     let supportsEmoji: Bool

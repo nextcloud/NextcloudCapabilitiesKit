@@ -3,13 +3,13 @@
 
 import Foundation
 
-public enum PushNotificationType: String {
+public enum PushNotificationType: String, Sendable {
     case files
     case activities
     case notifications
 }
 
-public struct NotifyPush: Equatable {
+public struct NotifyPush: Equatable, Sendable {
     public let available: Bool
     public let types: Set<PushNotificationType>
     public let endpoints: Endpoints?

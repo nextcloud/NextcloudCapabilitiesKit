@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct DirectEditing: Equatable {
+public struct DirectEditing: Equatable, Sendable {
     public let url: URL?
     public let etag: String
     public let supportsFileId: Bool

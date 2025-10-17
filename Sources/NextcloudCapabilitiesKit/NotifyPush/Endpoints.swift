@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Endpoints: Equatable {
+public struct Endpoints: Equatable, Sendable {
     public let websocket: String?
 
     init?(notifyPushCapabilities: [String: Any]) {

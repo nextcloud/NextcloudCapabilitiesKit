@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct BruteForce: Equatable {
+public struct BruteForce: Equatable, Sendable {
     public let delay: Int
     public let allowListed: Bool
 

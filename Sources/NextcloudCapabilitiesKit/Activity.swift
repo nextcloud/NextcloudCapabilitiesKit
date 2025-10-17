@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Activity: Equatable {
+public struct Activity: Equatable, Sendable {
     public let apiV2: [String]
 
     init?(capabilities: [String: Any]) {

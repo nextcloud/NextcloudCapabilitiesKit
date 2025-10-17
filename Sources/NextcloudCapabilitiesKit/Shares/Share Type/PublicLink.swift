@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct PublicLink: Equatable {
+public struct PublicLink: Equatable, Sendable {
     public let enabled: Bool
     public let allowUpload: Bool
     public let supportsUploadOnly: Bool

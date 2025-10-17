@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Email: Equatable {
+public struct Email: Equatable, Sendable {
     public let passwordEnabled: Bool
     public let passwordEnforced: Bool
 

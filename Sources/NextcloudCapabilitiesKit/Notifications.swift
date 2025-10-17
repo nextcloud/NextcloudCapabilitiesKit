@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Notifications: Equatable {
+public struct Notifications: Equatable, Sendable {
     let ocsEndpoints: [String]
     let push: [String]
     let adminNotifications: [String]

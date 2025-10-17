@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct ChunkedUpload: Equatable {
+public struct ChunkedUpload: Equatable, Sendable {
     public let maxParallelCount: Int64
     public let maxChunkSize: Int64
 

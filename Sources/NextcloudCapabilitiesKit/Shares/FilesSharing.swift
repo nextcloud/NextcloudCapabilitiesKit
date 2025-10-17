@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct FilesSharing: Equatable {
+public struct FilesSharing: Equatable, Sendable {
     public let email: Email?
     public let publicLink: PublicLink?
     public let user: User?

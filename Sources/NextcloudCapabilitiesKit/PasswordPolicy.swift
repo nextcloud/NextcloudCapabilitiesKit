@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct PasswordPolicy: Equatable {
+public struct PasswordPolicy: Equatable, Sendable {
     let minLength: Int
     let enforceNonCommonPassword: Bool
     let enforceNumericCharacters: Bool

@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Group: Equatable {
+public struct Group: Equatable, Sendable {
     let enabled: Bool
     let expireDateEnabled: Bool
 
