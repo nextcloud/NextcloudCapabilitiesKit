@@ -24,14 +24,14 @@ let package = Package(
         .target(
             name: "NextcloudCapabilitiesKit",
             swiftSettings: [
-              .enableUpcomingFeature("StrictConcurrency")
+                .enableUpcomingFeature("StrictConcurrency"),
             ]
         ),
         .testTarget(
             name: "NextcloudCapabilitiesKitTests",
             dependencies: ["NextcloudCapabilitiesKit"],
             swiftSettings: [
-              .enableUpcomingFeature("StrictConcurrency")
+                .enableUpcomingFeature("StrictConcurrency"),
             ]
         ),
     ]
