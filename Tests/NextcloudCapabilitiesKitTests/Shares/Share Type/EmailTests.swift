@@ -11,9 +11,9 @@ final class EmailTests: XCTestCase {
             "sharebymail": [
                 "password": [
                     "enabled": true,
-                    "enforced": false,
-                ],
-            ],
+                    "enforced": false
+                ]
+            ]
         ]
 
         let email = Email(filesSharingCapabilities: filesSharingCapabilities)

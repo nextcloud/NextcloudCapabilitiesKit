@@ -11,12 +11,12 @@ final class FederationTests: XCTestCase {
                 "outgoing": true,
                 "incoming": false,
                 "expire_date": [
-                    "enabled": true,
+                    "enabled": true
                 ],
                 "expire_date_supported": [
-                    "enabled": false,
-                ],
-            ],
+                    "enabled": false
+                ]
+            ]
         ]
 
         let federation = Federation(filesSharingCapabilities: filesSharingCapabilities)

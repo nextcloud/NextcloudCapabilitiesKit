@@ -15,8 +15,8 @@ class SpreedCallTests: XCTestCase {
                 "recording": true,
                 "can-upload-background": true,
                 "supported-reactions": ["like", "love"],
-                "predefined-backgrounds": ["mountains", "beach"],
-            ],
+                "predefined-backgrounds": ["mountains", "beach"]
+            ]
         ]
 
         let spreedCall = SpreedCall(spreedConfigCapabilities: validCapabilities)
@@ -41,8 +41,8 @@ class SpreedCallTests: XCTestCase {
         // Partial spreed call capabilities
         let partialCapabilities: [String: Any] = [
             "call": [
-                "enabled": true,
-            ],
+                "enabled": true
+            ]
         ]
 
         let spreedCall = SpreedCall(spreedConfigCapabilities: partialCapabilities)

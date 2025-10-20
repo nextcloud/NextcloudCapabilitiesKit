@@ -10,8 +10,8 @@ class SpreedSignalingTests: XCTestCase {
         let validCapabilities: [String: Any] = [
             "signaling": [
                 "session-ping-limit": 60,
-                "hello-v2-token-key": "testToken",
-            ],
+                "hello-v2-token-key": "testToken"
+            ]
         ]
 
         let spreedSignaling = SpreedSignaling(spreedConfigCapabilities: validCapabilities)
@@ -31,8 +31,8 @@ class SpreedSignalingTests: XCTestCase {
         // Partial spreed signaling capabilities
         let partialCapabilities: [String: Any] = [
             "signaling": [
-                "session-ping-limit": 30,
-            ],
+                "session-ping-limit": 30
+            ]
         ]
 
         let spreedSignaling = SpreedSignaling(spreedConfigCapabilities: partialCapabilities)

@@ -13,8 +13,8 @@ class FilesSharingTests: XCTestCase {
                 "sharebymail": [
                     "password": [
                         "enabled": true,
-                        "enforced": false,
-                    ],
+                        "enforced": false
+                    ]
                 ],
                 "public": [
                     "enabled": true,
@@ -23,51 +23,51 @@ class FilesSharingTests: XCTestCase {
                     "multiple": false,
                     "password": [
                         "askForOptionalPassword": true,
-                        "enforced": false,
+                        "enforced": false
                     ],
                     "expire_date": [
                         "days": 10,
-                        "enforced": true,
+                        "enforced": true
                     ],
                     "expire_date_internal": [
                         "days": 5,
-                        "enforced": true,
+                        "enforced": true
                     ],
                     "expire_date_remote": [
                         "days": 7,
-                        "enforced": false,
-                    ],
+                        "enforced": false
+                    ]
                 ],
                 "user": [
                     "send_mail": true,
                     "expire_date": [
-                        "enabled": true,
-                    ],
+                        "enabled": true
+                    ]
                 ],
                 "group": [
                     "enabled": true,
                     "expire_date": [
-                        "enabled": false,
-                    ],
+                        "enabled": false
+                    ]
                 ],
                 "federation": [
                     "outgoing": true,
                     "incoming": false,
                     "expire_date": [
-                        "enabled": true,
+                        "enabled": true
                     ],
                     "expire_date_supported": [
-                        "enabled": false,
-                    ],
+                        "enabled": false
+                    ]
                 ],
                 "sharee": [
                     "query_lookup_default": true,
-                    "always_show_unique": false,
+                    "always_show_unique": false
                 ],
                 "api_enabled": true,
                 "resharing": false,
-                "default_permissions": 31,
-            ],
+                "default_permissions": 31
+            ]
         ]
 
         let filesSharing = FilesSharing(capabilities: validCapabilities)
@@ -99,9 +99,9 @@ class FilesSharingTests: XCTestCase {
                 "group": [:],
                 "federation": [:],
                 "sharee": [:],
-                "api_enabled": true,
+                "api_enabled": true
                 // Missing "resharing" and "default_permissions"
-            ],
+            ]
         ]
 
         let filesSharing = FilesSharing(capabilities: partialCapabilities)

@@ -10,9 +10,9 @@ final class GroupTests: XCTestCase {
             "group": [
                 "enabled": true,
                 "expire_date": [
-                    "enabled": false,
-                ],
-            ],
+                    "enabled": false
+                ]
+            ]
         ]
 
         let group = Group(filesSharingCapabilities: filesSharingCapabilities)

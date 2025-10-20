@@ -10,8 +10,8 @@ class BruteForceTests: XCTestCase {
         let capabilities: [String: Any] = [
             "bruteforce": [
                 "delay": 5,
-                "allow-listed": true,
-            ],
+                "allow-listed": true
+            ]
         ]
 
         let bruteForce = BruteForce(capabilities: capabilities)
@@ -32,8 +32,8 @@ class BruteForceTests: XCTestCase {
         let capabilities: [String: Any] = [
             "bruteforce": [
                 // Only providing part of the required properties
-                "delay": 10,
-            ],
+                "delay": 10
+            ]
         ]
 
         let bruteForce = BruteForce(capabilities: capabilities)

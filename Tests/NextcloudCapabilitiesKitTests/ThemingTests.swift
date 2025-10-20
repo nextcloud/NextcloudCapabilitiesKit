@@ -22,8 +22,8 @@ class ThemingTests: XCTestCase {
                 "background-plain": true,
                 "background-default": false,
                 "logoheader": "https://example.com/logoheader",
-                "favicon": "https://example.com/favicon",
-            ],
+                "favicon": "https://example.com/favicon"
+            ]
         ]
 
         let theming = Theming(capabilities: capabilities)
@@ -58,8 +58,8 @@ class ThemingTests: XCTestCase {
                 // Only providing part of the required properties
                 "name": "Partial Theme",
                 "slogan": "Partial Slogan",
-                "color": "#AAAAAA",
-            ],
+                "color": "#AAAAAA"
+            ]
         ]
 
         let theming = Theming(capabilities: capabilities)

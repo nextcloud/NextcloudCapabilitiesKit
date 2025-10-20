@@ -20,14 +20,14 @@ class FilesTests: XCTestCase {
                 "directEditing": [
                     "url": "https://example.com/edit",
                     "etag": "12345",
-                    "supportsFileId": true,
+                    "supportsFileId": true
                 ],
                 "chunked_upload": [
                     "max_size": 100_000_000,
-                    "max_parallel_count": 5,
+                    "max_parallel_count": 5
                 ],
-                "locking": "1.0",
-            ],
+                "locking": "1.0"
+            ]
         ]
 
         let files = Files(capabilities: validCapabilities)
@@ -64,8 +64,8 @@ class FilesTests: XCTestCase {
                 "undelete": true,
                 "versioning": false,
                 "version_labeling": true,
-                "version_deletion": false,
-            ],
+                "version_deletion": false
+            ]
         ]
 
         let files = Files(capabilities: partialCapabilities)

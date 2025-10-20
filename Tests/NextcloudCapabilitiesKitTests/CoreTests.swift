@@ -12,8 +12,8 @@ class CoreTests: XCTestCase {
                 "pollinterval": 30,
                 "webdav-root": "custom/webdav",
                 "reference-api": true,
-                "reference-regex": "^[a-zA-Z0-9]*$",
-            ],
+                "reference-regex": "^[a-zA-Z0-9]*$"
+            ]
         ]
 
         let core = Core(capabilities: capabilities)
@@ -36,8 +36,8 @@ class CoreTests: XCTestCase {
         let capabilities: [String: Any] = [
             "core": [
                 // Only providing part of the required properties
-                "pollinterval": 45,
-            ],
+                "pollinterval": 45
+            ]
         ]
 
         let core = Core(capabilities: capabilities)

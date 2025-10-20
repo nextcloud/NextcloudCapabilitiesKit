@@ -11,8 +11,8 @@ class UserStatusTests: XCTestCase {
             "user_status": [
                 "enabled": true,
                 "restore": false,
-                "supports_emoji": true,
-            ],
+                "supports_emoji": true
+            ]
         ]
 
         let userStatus = UserStatus(capabilities: capabilities)
@@ -34,8 +34,8 @@ class UserStatusTests: XCTestCase {
         let capabilities: [String: Any] = [
             "user_status": [
                 // Only providing part of the required properties
-                "enabled": false,
-            ],
+                "enabled": false
+            ]
         ]
 
         let userStatus = UserStatus(capabilities: capabilities)

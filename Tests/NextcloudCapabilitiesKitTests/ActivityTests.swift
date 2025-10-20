@@ -9,8 +9,8 @@ class ActivityTests: XCTestCase {
         // Valid activity capabilities
         let capabilities: [String: Any] = [
             "activity": [
-                "apiv2": ["endpoint1", "endpoint2"],
-            ],
+                "apiv2": ["endpoint1", "endpoint2"]
+            ]
         ]
 
         let activity = Activity(capabilities: capabilities)

@@ -11,8 +11,8 @@ class NotificationsTests: XCTestCase {
             "notifications": [
                 "ocs-endpoints": ["endpoint1", "endpoint2"],
                 "push": ["push1", "push2"],
-                "admin-notifications": ["notification1", "notification2"],
-            ],
+                "admin-notifications": ["notification1", "notification2"]
+            ]
         ]
 
         let notifications = Notifications(capabilities: capabilities)
@@ -34,8 +34,8 @@ class NotificationsTests: XCTestCase {
         let capabilities: [String: Any] = [
             "notifications": [
                 // Only providing part of the required properties
-                "ocs-endpoints": ["partialEndpoint"],
-            ],
+                "ocs-endpoints": ["partialEndpoint"]
+            ]
         ]
 
         let notifications = Notifications(capabilities: capabilities)

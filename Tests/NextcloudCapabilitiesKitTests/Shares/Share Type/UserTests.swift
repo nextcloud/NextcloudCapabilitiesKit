@@ -11,9 +11,9 @@ class UserTests: XCTestCase {
             "user": [
                 "send_mail": true,
                 "expire_date": [
-                    "enabled": true,
-                ],
-            ],
+                    "enabled": true
+                ]
+            ]
         ]
 
         let user = User(filesSharingCapabilities: validFilesSharingCapabilities)
@@ -31,9 +31,9 @@ class UserTests: XCTestCase {
     func testPartiallyValidUserInitialization() {
         let partialFilesSharingCapabilities: [String: Any] = [
             "user": [
-                "send_mail": true,
+                "send_mail": true
                 // Missing "expire_date" subobject
-            ],
+            ]
         ]
 
         let user = User(filesSharingCapabilities: partialFilesSharingCapabilities)

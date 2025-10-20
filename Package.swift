@@ -12,11 +12,11 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "NextcloudCapabilitiesKit",
-            targets: ["NextcloudCapabilitiesKit"],
-        ),
+            targets: ["NextcloudCapabilitiesKit"]
+        )
     ],
     dependencies: [
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.55.0"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.55.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -24,15 +24,15 @@ let package = Package(
         .target(
             name: "NextcloudCapabilitiesKit",
             swiftSettings: [
-              .enableUpcomingFeature("StrictConcurrency")
+                .enableUpcomingFeature("StrictConcurrency")
             ]
         ),
         .testTarget(
             name: "NextcloudCapabilitiesKitTests",
             dependencies: ["NextcloudCapabilitiesKit"],
             swiftSettings: [
-              .enableUpcomingFeature("StrictConcurrency")
+                .enableUpcomingFeature("StrictConcurrency")
             ]
-        ),
-    ],
+        )
+    ]
 )

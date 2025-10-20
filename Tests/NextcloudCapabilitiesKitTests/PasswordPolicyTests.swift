@@ -16,9 +16,9 @@ class PasswordPolicyTests: XCTestCase {
                 "enforceUpperLowerCase": true,
                 "api": [
                     "generate": "https://example.com/generate",
-                    "validate": "https://example.com/validate",
-                ],
-            ],
+                    "validate": "https://example.com/validate"
+                ]
+            ]
         ]
 
         let passwordPolicy = PasswordPolicy(capabilities: capabilities)
@@ -45,8 +45,8 @@ class PasswordPolicyTests: XCTestCase {
             "password_policy": [
                 // Only providing part of the required properties
                 "minLength": 6,
-                "enforceUpperLowerCase": false,
-            ],
+                "enforceUpperLowerCase": false
+            ]
         ]
 
         let passwordPolicy = PasswordPolicy(capabilities: capabilities)

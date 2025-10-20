@@ -11,7 +11,7 @@ class SpreedConfigTests: XCTestCase {
             "config": [
                 "attachments": [
                     "allowed": true,
-                    "folder": "uploads",
+                    "folder": "uploads"
                 ],
                 "call": [
                     "enabled": true,
@@ -19,25 +19,25 @@ class SpreedConfigTests: XCTestCase {
                     "recording": true,
                     "can-upload-background": true,
                     "supported-reactions": ["like", "love"],
-                    "predefined-backgrounds": ["mountains", "beach"],
+                    "predefined-backgrounds": ["mountains", "beach"]
                 ],
                 "chat": [
                     "max-length": 100,
                     "read-privacy": 1,
                     "typing-privacy": 2,
-                    "translations": ["en", "fr", "de"],
+                    "translations": ["en", "fr", "de"]
                 ],
                 "signaling": [
                     "session-ping-limit": 60,
-                    "hello-v2-token-key": "testToken",
+                    "hello-v2-token-key": "testToken"
                 ],
                 "conversations": [
-                    "can-create": true,
+                    "can-create": true
                 ],
                 "previews": [
-                    "max-gif-size": 1024,
-                ],
-            ],
+                    "max-gif-size": 1024
+                ]
+            ]
         ]
 
         let spreedConfig = SpreedConfig(spreedCapabilities: spreedCapabilities)
@@ -64,8 +64,8 @@ class SpreedConfigTests: XCTestCase {
         spreedCapabilities["config"] = [
             // Only providing part of the required properties
             "attachments": [
-                "attachmentProperty": "value",
-            ],
+                "attachmentProperty": "value"
+            ]
         ]
 
         let spreedConfig = SpreedConfig(spreedCapabilities: spreedCapabilities)

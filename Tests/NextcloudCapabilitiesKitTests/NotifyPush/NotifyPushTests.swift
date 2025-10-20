@@ -9,8 +9,8 @@ class NotifyPushTests: XCTestCase {
         // Valid notify push capabilities
         let validCapabilities: [String: Any] = [
             "notify_push": [
-                "type": ["files", "activities"],
-            ],
+                "type": ["files", "activities"]
+            ]
         ]
 
         let notifyPush = NotifyPush(capabilities: validCapabilities)
@@ -32,8 +32,8 @@ class NotifyPushTests: XCTestCase {
         // Partially valid notify push capabilities
         let partiallyValidCapabilities: [String: Any] = [
             "notify_push": [
-                "type": ["files", "invalidType"],
-            ],
+                "type": ["files", "invalidType"]
+            ]
         ]
 
         let notifyPush = NotifyPush(capabilities: partiallyValidCapabilities)

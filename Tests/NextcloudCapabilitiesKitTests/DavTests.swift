@@ -10,8 +10,8 @@ class DavTests: XCTestCase {
         let capabilities: [String: Any] = [
             "dav": [
                 "chunking": "1.0",
-                "bulkupload": "1.0",
-            ],
+                "bulkupload": "1.0"
+            ]
         ]
 
         let dav = Dav(capabilities: capabilities)
@@ -32,8 +32,8 @@ class DavTests: XCTestCase {
         let capabilities: [String: Any] = [
             "dav": [
                 // Only providing part of the required properties
-                "chunking": "1.0",
-            ],
+                "chunking": "1.0"
+            ]
         ]
 
         let dav = Dav(capabilities: capabilities)

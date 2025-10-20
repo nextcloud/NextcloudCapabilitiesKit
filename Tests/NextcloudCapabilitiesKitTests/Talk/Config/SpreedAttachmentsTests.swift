@@ -10,8 +10,8 @@ class SpreedAttachmentsTests: XCTestCase {
         let validCapabilities: [String: Any] = [
             "attachments": [
                 "allowed": true,
-                "folder": "uploads",
-            ],
+                "folder": "uploads"
+            ]
         ]
 
         let spreedAttachments = SpreedAttachments(spreedConfigCapabilities: validCapabilities)
@@ -25,8 +25,8 @@ class SpreedAttachmentsTests: XCTestCase {
         // Partial spreed attachment capabilities
         let partialCapabilities: [String: Any] = [
             "attachments": [
-                "allowed": true,
-            ],
+                "allowed": true
+            ]
         ]
 
         let spreedAttachments = SpreedAttachments(spreedConfigCapabilities: partialCapabilities)
