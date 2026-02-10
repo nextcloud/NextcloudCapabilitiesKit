@@ -1,9 +1,8 @@
 //  SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
 //  SPDX-License-Identifier: LGPL-3.0-or-later
 
-import XCTest
-
 @testable import NextcloudCapabilitiesKit
+import XCTest
 
 class FilesSharingTests: XCTestCase {
     func testValidFilesSharingInitialization() {
