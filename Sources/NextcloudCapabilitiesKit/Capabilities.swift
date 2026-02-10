@@ -4,6 +4,9 @@
 import Foundation
 
 public struct Capabilities: Equatable, Sendable {
+    public let major: Int64
+    public let minor: Int64
+    public let patch: Int64
     public let core: Core?
     public let bruteForce: BruteForce?
     public let files: Files?
@@ -33,6 +36,20 @@ public struct Capabilities: Equatable, Sendable {
             debugPrint("Could not parse capabilities! \(jsonString)")
             return nil
         }
+
+        // Parse version information
+        guard let version = receivedData["version"] as? [String: Any],
+              let majorValue = version["major"] as? Int64,
+              let minorValue = version["minor"] as? Int64,
+              let microValue = version["micro"] as? Int64
+        else {
+            debugPrint("Could not parse version information!")
+            return nil
+        }
+
+        major = majorValue
+        minor = minorValue
+        patch = microValue
 
         core = Core(capabilities: capabilities)
         bruteForce = BruteForce(capabilities: capabilities)
