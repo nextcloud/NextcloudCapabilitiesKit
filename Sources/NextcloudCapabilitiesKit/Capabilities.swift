@@ -39,17 +39,17 @@ public struct Capabilities: Equatable, Sendable {
 
         // Parse version information
         guard let version = receivedData["version"] as? [String: Any],
-              let majorValue = version["major"] as? Int64,
-              let minorValue = version["minor"] as? Int64,
-              let microValue = version["micro"] as? Int64
+              let majorValue = version["major"] as? Int,
+              let minorValue = version["minor"] as? Int,
+              let microValue = version["micro"] as? Int
         else {
             debugPrint("Could not parse version information!")
             return nil
         }
 
-        major = majorValue
-        minor = minorValue
-        patch = microValue
+        major = Int64(majorValue)
+        minor = Int64(minorValue)
+        patch = Int64(microValue)
 
         core = Core(capabilities: capabilities)
         bruteForce = BruteForce(capabilities: capabilities)
