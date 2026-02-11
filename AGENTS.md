@@ -1,6 +1,6 @@
 <!--
-  - SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
-  - SPDX-License-Identifier: GPL-2.0-or-later
+  - SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: LGPL-3.0-or-later
 -->
 
 # Agents
