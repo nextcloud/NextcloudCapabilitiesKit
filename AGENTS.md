@@ -21,7 +21,7 @@ The commenting signs need to be used depending on the file type.
 
 ```plaintext
 SPDX-FileCopyrightText: <YEAR> Nextcloud GmbH and Nextcloud contributors
-SPDX-License-Identifier: GPL-2.0-or-later
+SPDX-License-Identifier: LGPL-3.0-or-later
 ```
 
 ## Code Style
