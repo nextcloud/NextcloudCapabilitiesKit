@@ -7,6 +7,7 @@ public struct Capabilities: Equatable, Sendable {
     public let major: Int64
     public let minor: Int64
     public let patch: Int64
+    public let clientIntegration: ClientIntegration?
     public let core: Core?
     public let bruteForce: BruteForce?
     public let files: Files?
@@ -51,6 +52,7 @@ public struct Capabilities: Equatable, Sendable {
         minor = Int64(minorValue)
         patch = Int64(microValue)
 
+        clientIntegration = ClientIntegration(capabilities: capabilities)
         core = Core(capabilities: capabilities)
         bruteForce = BruteForce(capabilities: capabilities)
         files = Files(capabilities: capabilities)
