@@ -6,6 +6,10 @@ import Foundation
 public struct Files: Equatable, Sendable {
     public let bigFileChunking: Bool
     public let blackListedFiles: [String]
+    public let forbiddenFilenames: [String]
+    public let forbiddenFilenameBasenames: [String]
+    public let forbiddenFilenameCharacters: [String]
+    public let forbiddenFilenameExtensions: [String]
     public let directEditing: DirectEditing?
     public let chunkedUpload: ChunkedUpload?
     public let comments: Bool
@@ -23,6 +27,10 @@ public struct Files: Equatable, Sendable {
 
         bigFileChunking = capabilities["bigfilechunking"] as? Bool ?? false
         blackListedFiles = capabilities["blacklisted_files"] as? [String] ?? []
+        forbiddenFilenames = capabilities["forbidden_filenames"] as? [String] ?? []
+        forbiddenFilenameBasenames = capabilities["forbidden_filename_basenames"] as? [String] ?? []
+        forbiddenFilenameCharacters = capabilities["forbidden_filename_characters"] as? [String] ?? []
+        forbiddenFilenameExtensions = capabilities["forbidden_filename_extensions"] as? [String] ?? []
         directEditing = DirectEditing(filesCapabilities: capabilities)
         chunkedUpload = ChunkedUpload(filesCapabilities: capabilities)
         comments = capabilities["comments"] as? Bool ?? false
