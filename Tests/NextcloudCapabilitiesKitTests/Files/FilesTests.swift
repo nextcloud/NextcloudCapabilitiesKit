@@ -15,6 +15,14 @@ class FilesTests: XCTestCase {
                 "forbidden_filename_basenames": [".DS_Store"],
                 "forbidden_filename_characters": ["/"],
                 "forbidden_filename_extensions": [".tmp"],
+                "file_conversions": [
+                    [
+                        "from": "application/vnd.oasis.opendocument.text",
+                        "to": "application/pdf",
+                        "extension": "pdf",
+                        "displayName": "PDF"
+                    ]
+                ],
                 "comments": false,
                 "undelete": true,
                 "versioning": false,
@@ -42,6 +50,7 @@ class FilesTests: XCTestCase {
         XCTAssertEqual(files?.forbiddenFilenameBasenames, [".DS_Store"], "Forbidden basenames should match the provided values")
         XCTAssertEqual(files?.forbiddenFilenameCharacters, ["/"], "Forbidden characters should match the provided values")
         XCTAssertEqual(files?.forbiddenFilenameExtensions, [".tmp"], "Forbidden extensions should match the provided values")
+        XCTAssertEqual(files?.fileConversions.first?.extension, "pdf", "File conversion extension should match the provided value")
         XCTAssertNotNil(files?.directEditing, "Direct Editing should be initialized")
         XCTAssertEqual(files?.comments, false, "Comments should be false")
         XCTAssertEqual(files?.undelete, true, "Undelete should be true")
@@ -80,6 +89,7 @@ class FilesTests: XCTestCase {
         XCTAssertEqual(files?.bigFileChunking, true, "Big File Chunking should be true")
         XCTAssertEqual(files?.blackListedFiles, [], "Blacklisted Files should default to an empty array")
         XCTAssertEqual(files?.forbiddenFilenames, [], "Forbidden filenames should default to an empty array")
+        XCTAssertEqual(files?.fileConversions, [], "File conversions should default to an empty array")
         XCTAssertNil(files?.directEditing, "Direct Editing should be nil when not provided")
         XCTAssertEqual(files?.comments, false, "Comments should be false")
         XCTAssertEqual(files?.undelete, true, "Undelete should be true")

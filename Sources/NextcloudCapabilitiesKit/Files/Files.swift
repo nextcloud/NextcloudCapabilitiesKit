@@ -10,6 +10,7 @@ public struct Files: Equatable, Sendable {
     public let forbiddenFilenameBasenames: [String]
     public let forbiddenFilenameCharacters: [String]
     public let forbiddenFilenameExtensions: [String]
+    public let fileConversions: [FileConversion]
     public let directEditing: DirectEditing?
     public let chunkedUpload: ChunkedUpload?
     public let comments: Bool
@@ -31,6 +32,7 @@ public struct Files: Equatable, Sendable {
         forbiddenFilenameBasenames = capabilities["forbidden_filename_basenames"] as? [String] ?? []
         forbiddenFilenameCharacters = capabilities["forbidden_filename_characters"] as? [String] ?? []
         forbiddenFilenameExtensions = capabilities["forbidden_filename_extensions"] as? [String] ?? []
+        fileConversions = (capabilities["file_conversions"] as? [[String: Any]] ?? []).compactMap(FileConversion.init)
         directEditing = DirectEditing(filesCapabilities: capabilities)
         chunkedUpload = ChunkedUpload(filesCapabilities: capabilities)
         comments = capabilities["comments"] as? Bool ?? false
