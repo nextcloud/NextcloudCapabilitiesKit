@@ -11,6 +11,10 @@ class FilesTests: XCTestCase {
             "files": [
                 "bigfilechunking": true,
                 "blacklisted_files": ["file1", "file2"],
+                "forbidden_filenames": ["forbidden"],
+                "forbidden_filename_basenames": [".DS_Store"],
+                "forbidden_filename_characters": ["/"],
+                "forbidden_filename_extensions": [".tmp"],
                 "comments": false,
                 "undelete": true,
                 "versioning": false,
@@ -34,6 +38,10 @@ class FilesTests: XCTestCase {
         XCTAssertNotNil(files, "Files instance should be created with valid input")
         XCTAssertEqual(files?.bigFileChunking, true, "Big File Chunking should be true")
         XCTAssertEqual(files?.blackListedFiles, ["file1", "file2"], "Blacklisted Files should match the provided values")
+        XCTAssertEqual(files?.forbiddenFilenames, ["forbidden"], "Forbidden filenames should match the provided values")
+        XCTAssertEqual(files?.forbiddenFilenameBasenames, [".DS_Store"], "Forbidden basenames should match the provided values")
+        XCTAssertEqual(files?.forbiddenFilenameCharacters, ["/"], "Forbidden characters should match the provided values")
+        XCTAssertEqual(files?.forbiddenFilenameExtensions, [".tmp"], "Forbidden extensions should match the provided values")
         XCTAssertNotNil(files?.directEditing, "Direct Editing should be initialized")
         XCTAssertEqual(files?.comments, false, "Comments should be false")
         XCTAssertEqual(files?.undelete, true, "Undelete should be true")
@@ -71,6 +79,7 @@ class FilesTests: XCTestCase {
         XCTAssertNotNil(files, "Files instance should be created even with partially valid input")
         XCTAssertEqual(files?.bigFileChunking, true, "Big File Chunking should be true")
         XCTAssertEqual(files?.blackListedFiles, [], "Blacklisted Files should default to an empty array")
+        XCTAssertEqual(files?.forbiddenFilenames, [], "Forbidden filenames should default to an empty array")
         XCTAssertNil(files?.directEditing, "Direct Editing should be nil when not provided")
         XCTAssertEqual(files?.comments, false, "Comments should be false")
         XCTAssertEqual(files?.undelete, true, "Undelete should be true")
