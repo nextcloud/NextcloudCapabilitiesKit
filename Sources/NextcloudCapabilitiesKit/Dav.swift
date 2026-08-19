@@ -4,8 +4,14 @@
 import Foundation
 
 public struct Dav: Equatable, Sendable {
-    let chunking: String
-    let bulkUpload: String
+    public let chunking: String
+    public let publicSharesChunking: Bool
+    public let searchSupportsCreationTime: Bool
+    public let searchSupportsUploadTime: Bool
+    public let searchSupportsLastActivity: Bool
+    public let bulkUpload: String?
+    public let absenceSupported: Bool
+    public let absenceReplacement: Bool
 
     init?(capabilities: [String: Any]) {
         guard let capabilities = capabilities["dav"] as? [String: Any] else {
@@ -14,6 +20,12 @@ public struct Dav: Equatable, Sendable {
         }
 
         chunking = capabilities["chunking"] as? String ?? ""
-        bulkUpload = capabilities["bulkupload"] as? String ?? ""
+        publicSharesChunking = capabilities["public_shares_chunking"] as? Bool ?? false
+        searchSupportsCreationTime = capabilities["search_supports_creation_time"] as? Bool ?? false
+        searchSupportsUploadTime = capabilities["search_supports_upload_time"] as? Bool ?? false
+        searchSupportsLastActivity = capabilities["search_supports_last_activity"] as? Bool ?? false
+        bulkUpload = capabilities["bulkupload"] as? String
+        absenceSupported = capabilities["absence-supported"] as? Bool ?? false
+        absenceReplacement = capabilities["absence-replacement"] as? Bool ?? false
     }
 }
