@@ -20,6 +20,7 @@ public struct Capabilities: Equatable, Sendable {
     public let userStatus: UserStatus?
     public let filesSharing: FilesSharing?
     public let notifyPush: NotifyPush?
+    public let systemTags: SystemTags?
     public let weatherStatus: WeatherStatus?
     public let provisioningAPI: ProvisioningAPI?
 
@@ -67,6 +68,7 @@ public struct Capabilities: Equatable, Sendable {
         userStatus = UserStatus(capabilities: capabilities)
         filesSharing = FilesSharing(capabilities: capabilities)
         notifyPush = NotifyPush(capabilities: capabilities)
+        systemTags = SystemTags(capabilities: capabilities)
         weatherStatus = WeatherStatus(capabilities: capabilities)
         provisioningAPI = ProvisioningAPI(capabilities: capabilities)
     }
