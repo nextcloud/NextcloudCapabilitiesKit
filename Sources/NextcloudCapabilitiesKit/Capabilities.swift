@@ -21,6 +21,7 @@ public struct Capabilities: Equatable, Sendable {
     public let filesSharing: FilesSharing?
     public let notifyPush: NotifyPush?
     public let weatherStatus: WeatherStatus?
+    public let provisioningAPI: ProvisioningAPI?
 
     public init?(data: Data) {
         guard let anyJson = try? JSONSerialization.jsonObject(with: data, options: []) else {
@@ -67,5 +68,6 @@ public struct Capabilities: Equatable, Sendable {
         filesSharing = FilesSharing(capabilities: capabilities)
         notifyPush = NotifyPush(capabilities: capabilities)
         weatherStatus = WeatherStatus(capabilities: capabilities)
+        provisioningAPI = ProvisioningAPI(capabilities: capabilities)
     }
 }
