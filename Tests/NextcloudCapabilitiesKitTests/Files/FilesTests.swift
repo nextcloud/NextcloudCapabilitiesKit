@@ -38,7 +38,8 @@ class FilesTests: XCTestCase {
                     "max_size": 100_000_000,
                     "max_parallel_count": 5
                 ],
-                "locking": "1.0"
+                "locking": "1.0",
+                "windows_compatible_filenames": true
             ]
         ]
 
@@ -63,6 +64,7 @@ class FilesTests: XCTestCase {
         XCTAssertEqual(files?.chunkedUpload?.maxChunkSize, 100_000_000)
         XCTAssertEqual(files?.chunkedUpload?.maxParallelCount, 5)
         XCTAssertEqual(files?.locking, "1.0", "Locking should match the provided value")
+        XCTAssertEqual(files?.windowsCompatibleFilenames, true, "Windows compatible filenames should be true")
     }
 
     func testInvalidFilesInitialization() {
@@ -101,5 +103,6 @@ class FilesTests: XCTestCase {
         XCTAssertNil(files?.chunkedUpload, "Chunked Upload should be nil when not provided")
         XCTAssertNil(files?.locking, "Locking should be nil when not provided")
         XCTAssertFalse(files?.deleteFromTrash ?? true, "Delete from trash should default to false when not provided")
+        XCTAssertFalse(files?.windowsCompatibleFilenames ?? true, "Windows filename support should default to false when not provided")
     }
 }
