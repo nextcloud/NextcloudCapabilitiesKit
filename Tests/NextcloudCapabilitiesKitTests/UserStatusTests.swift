@@ -11,7 +11,8 @@ class UserStatusTests: XCTestCase {
             "user_status": [
                 "enabled": true,
                 "restore": false,
-                "supports_emoji": true
+                "supports_emoji": true,
+                "supports_busy": true
             ]
         ]
 
@@ -20,6 +21,7 @@ class UserStatusTests: XCTestCase {
         XCTAssertTrue(userStatus?.enabled ?? false, "UserStatus enabled should be true")
         XCTAssertFalse(userStatus?.restore ?? true, "UserStatus restore should be false")
         XCTAssertTrue(userStatus?.supportsEmoji ?? false, "UserStatus supportsEmoji should be true")
+        XCTAssertTrue(userStatus?.supportsBusy ?? false, "UserStatus supportsBusy should be true")
     }
 
     func testUserStatusInitializationWithMissingCapabilities() {
@@ -43,5 +45,6 @@ class UserStatusTests: XCTestCase {
         XCTAssertFalse(userStatus?.enabled ?? true, "UserStatus enabled should be false with partial input")
         XCTAssertFalse(userStatus?.restore ?? true, "UserStatus restore should default to false with partial input")
         XCTAssertFalse(userStatus?.supportsEmoji ?? true, "UserStatus supportsEmoji should default to false with partial input")
+        XCTAssertFalse(userStatus?.supportsBusy ?? true, "UserStatus supportsBusy should default to false with partial input")
     }
 }
