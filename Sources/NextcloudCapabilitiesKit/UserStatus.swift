@@ -4,9 +4,10 @@
 import Foundation
 
 public struct UserStatus: Equatable, Sendable {
-    let enabled: Bool
-    let restore: Bool
-    let supportsEmoji: Bool
+    public let enabled: Bool
+    public let restore: Bool
+    public let supportsEmoji: Bool
+    public let supportsBusy: Bool
 
     init?(capabilities: [String: Any]) {
         guard let capabilities = capabilities["user_status"] as? [String: Any] else {
@@ -17,5 +18,6 @@ public struct UserStatus: Equatable, Sendable {
         enabled = capabilities["enabled"] as? Bool ?? false
         restore = capabilities["restore"] as? Bool ?? false
         supportsEmoji = capabilities["supports_emoji"] as? Bool ?? false
+        supportsBusy = capabilities["supports_busy"] as? Bool ?? false
     }
 }
