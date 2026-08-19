@@ -20,6 +20,7 @@ public struct Files: Equatable, Sendable {
     public let versionLabeling: Bool
     public let versionDeletion: Bool
     public let locking: String?
+    public let windowsCompatibleFilenames: Bool
 
     init?(capabilities: [String: Any]) {
         guard let capabilities = capabilities["files"] as? [String: Any] else {
@@ -43,5 +44,6 @@ public struct Files: Equatable, Sendable {
         versionLabeling = capabilities["version_labeling"] as? Bool ?? false
         versionDeletion = capabilities["version_deletion"] as? Bool ?? false
         locking = capabilities["locking"] as? String ?? nil
+        windowsCompatibleFilenames = capabilities["windows_compatible_filenames"] as? Bool ?? false
     }
 }
