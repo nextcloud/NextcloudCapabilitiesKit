@@ -10,14 +10,26 @@ class DavTests: XCTestCase {
         let capabilities: [String: Any] = [
             "dav": [
                 "chunking": "1.0",
-                "bulkupload": "1.0"
+                "public_shares_chunking": true,
+                "search_supports_creation_time": true,
+                "search_supports_upload_time": true,
+                "search_supports_last_activity": true,
+                "bulkupload": "1.0",
+                "absence-supported": true,
+                "absence-replacement": true
             ]
         ]
 
         let dav = Dav(capabilities: capabilities)
         XCTAssertNotNil(dav, "Dav instance should be created with valid input")
         XCTAssertEqual(dav?.chunking, "1.0", "Dav chunking should match the provided value")
+        XCTAssertEqual(dav?.publicSharesChunking, true, "Dav public shares chunking should match the provided value")
+        XCTAssertEqual(dav?.searchSupportsCreationTime, true, "Dav creation time search should match the provided value")
+        XCTAssertEqual(dav?.searchSupportsUploadTime, true, "Dav upload time search should match the provided value")
+        XCTAssertEqual(dav?.searchSupportsLastActivity, true, "Dav activity search should match the provided value")
         XCTAssertEqual(dav?.bulkUpload, "1.0", "Dav bulkUpload should match the provided value")
+        XCTAssertEqual(dav?.absenceSupported, true, "Dav absence support should match the provided value")
+        XCTAssertEqual(dav?.absenceReplacement, true, "Dav absence replacement should match the provided value")
     }
 
     func testDavInitializationWithInvalidCapabilities() {
@@ -39,6 +51,6 @@ class DavTests: XCTestCase {
         let dav = Dav(capabilities: capabilities)
         XCTAssertNotNil(dav, "Dav instance should be created with partial input")
         XCTAssertEqual(dav?.chunking, "1.0", "Dav chunking should match the provided value with partial input")
-        XCTAssertEqual(dav?.bulkUpload, "", "Dav bulkUpload should default to an empty string with partial input")
+        XCTAssertNil(dav?.bulkUpload, "Dav bulkUpload should be nil when it is not provided")
     }
 }
