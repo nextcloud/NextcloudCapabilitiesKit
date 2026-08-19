@@ -10,29 +10,43 @@ class FilesSharingTests: XCTestCase {
         let validCapabilities: [String: Any] = [
             "files_sharing": [
                 "sharebymail": [
+                    "enabled": true,
+                    "send_password_by_mail": true,
+                    "upload_files_drop": [
+                        "enabled": true
+                    ],
                     "password": [
                         "enabled": true,
                         "enforced": false
+                    ],
+                    "expire_date": [
+                        "enabled": true,
+                        "enforced": true
                     ]
                 ],
                 "public": [
                     "enabled": true,
                     "upload": false,
-                    "supports_upload_only": true,
-                    "multiple": false,
+                    "upload_files_drop": true,
+                    "send_mail": true,
+                    "custom_tokens": true,
+                    "multiple_links": false,
                     "password": [
                         "askForOptionalPassword": true,
                         "enforced": false
                     ],
                     "expire_date": [
+                        "enabled": true,
                         "days": 10,
                         "enforced": true
                     ],
                     "expire_date_internal": [
+                        "enabled": true,
                         "days": 5,
                         "enforced": true
                     ],
                     "expire_date_remote": [
+                        "enabled": true,
                         "days": 7,
                         "enforced": false
                     ]
@@ -60,12 +74,15 @@ class FilesSharingTests: XCTestCase {
                     ]
                 ],
                 "sharee": [
+                    "minSearchStringLength": 3,
                     "query_lookup_default": true,
                     "always_show_unique": false
                 ],
                 "api_enabled": true,
                 "resharing": false,
-                "default_permissions": 31
+                "group_sharing": true,
+                "default_permissions": 31,
+                "exclude_reshare_from_edit": true
             ]
         ]
 
@@ -79,7 +96,12 @@ class FilesSharingTests: XCTestCase {
         XCTAssertNotNil(filesSharing?.sharee, "Sharee subobject should be initialized")
         XCTAssertEqual(filesSharing?.apiEnabled, true, "APIEnabled should be true")
         XCTAssertEqual(filesSharing?.resharing, false, "Resharing should be false")
-        XCTAssertEqual(filesSharing?.defaultPermissions, 31, "DefaultPermissions should be 755")
+        XCTAssertEqual(filesSharing?.groupSharing, true, "Group sharing should be true")
+        XCTAssertEqual(filesSharing?.defaultPermissions, 31, "DefaultPermissions should be 31")
+        XCTAssertEqual(filesSharing?.excludeReshareFromEdit, true, "Exclude reshare from edit should be true")
+        XCTAssertEqual(filesSharing?.email?.sendsPasswordByEmail, true, "Share by mail should send passwords")
+        XCTAssertEqual(filesSharing?.publicLink?.customTokens, true, "Public links should support custom tokens")
+        XCTAssertEqual(filesSharing?.sharee?.minSearchStringLength, 3, "Sharee search length should match the provided value")
     }
 
     func testInvalidFilesSharingInitialization() {

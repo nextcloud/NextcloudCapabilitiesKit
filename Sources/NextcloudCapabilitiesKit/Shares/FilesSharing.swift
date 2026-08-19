@@ -12,7 +12,9 @@ public struct FilesSharing: Equatable, Sendable {
     public let sharee: Sharee?
     public let apiEnabled: Bool
     public let resharing: Bool
+    public let groupSharing: Bool
     public let defaultPermissions: Int
+    public let excludeReshareFromEdit: Bool
 
     init?(capabilities: [String: Any]) {
         guard let capabilities = capabilities["files_sharing"] as? [String: Any] else {
@@ -28,7 +30,9 @@ public struct FilesSharing: Equatable, Sendable {
         sharee = Sharee(filesSharingCapabilities: capabilities)
         apiEnabled = capabilities["api_enabled"] as? Bool ?? false
         resharing = capabilities["resharing"] as? Bool ?? false
+        groupSharing = capabilities["group_sharing"] as? Bool ?? false
         defaultPermissions = capabilities["default_permissions"] as? Int ?? 0
+        excludeReshareFromEdit = capabilities["exclude_reshare_from_edit"] as? Bool ?? false
         debugPrint("Parsed share capabilities.")
     }
 }
