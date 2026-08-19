@@ -12,7 +12,14 @@ class CoreTests: XCTestCase {
                 "pollinterval": 30,
                 "webdav-root": "custom/webdav",
                 "reference-api": true,
-                "reference-regex": "^[a-zA-Z0-9]*$"
+                "reference-regex": "^[a-zA-Z0-9]*$",
+                "mod-rewrite-working": true,
+                "user": [
+                    "language": "en",
+                    "locale": "en_US",
+                    "timezone": "Europe/Berlin"
+                ],
+                "can-create-app-token": true
             ]
         ]
 
@@ -22,6 +29,11 @@ class CoreTests: XCTestCase {
         XCTAssertEqual(core?.webdavRoot, "custom/webdav", "Core webdavRoot should match the provided value")
         XCTAssertTrue(core?.referenceApi ?? false, "Core referenceApi should match the provided value")
         XCTAssertEqual(core?.referenceRegex, "^[a-zA-Z0-9]*$", "Core referenceRegex should match the provided value")
+        XCTAssertTrue(core?.modRewriteWorking ?? false, "Core modRewriteWorking should match the provided value")
+        XCTAssertEqual(core?.user?.language, "en", "Core user language should match the provided value")
+        XCTAssertEqual(core?.user?.locale, "en_US", "Core user locale should match the provided value")
+        XCTAssertEqual(core?.user?.timeZone, "Europe/Berlin", "Core user timezone should match the provided value")
+        XCTAssertEqual(core?.canCreateAppToken, true, "Core app token capability should match the provided value")
     }
 
     func testCoreInitializationWithInvalidCapabilities() {
@@ -46,5 +58,8 @@ class CoreTests: XCTestCase {
         XCTAssertEqual(core?.webdavRoot, "remote.php/webdav", "Core webdavRoot should default to 'remote.php/webdav' with partial input")
         XCTAssertFalse(core?.referenceApi ?? true, "Core referenceApi should default to false with partial input")
         XCTAssertEqual(core?.referenceRegex, "", "Core referenceRegex should default to an empty string with partial input")
+        XCTAssertFalse(core?.modRewriteWorking ?? true, "Core modRewriteWorking should default to false with partial input")
+        XCTAssertNil(core?.user, "Core user should be nil when it is not provided")
+        XCTAssertNil(core?.canCreateAppToken, "Core app token capability should be nil when it is not provided")
     }
 }

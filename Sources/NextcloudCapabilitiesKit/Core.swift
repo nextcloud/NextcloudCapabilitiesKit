@@ -4,10 +4,13 @@
 import Foundation
 
 public struct Core: Equatable, Sendable {
-    let pollInterval: Int
-    let webdavRoot: String
-    let referenceApi: Bool
-    let referenceRegex: String
+    public let pollInterval: Int
+    public let webdavRoot: String
+    public let referenceApi: Bool
+    public let referenceRegex: String
+    public let modRewriteWorking: Bool
+    public let user: CoreUser?
+    public let canCreateAppToken: Bool?
 
     init?(capabilities: [String: Any]) {
         guard let capabilities = capabilities["core"] as? [String: Any] else {
@@ -19,5 +22,8 @@ public struct Core: Equatable, Sendable {
         webdavRoot = capabilities["webdav-root"] as? String ?? "remote.php/webdav"
         referenceApi = capabilities["reference-api"] as? Bool ?? false
         referenceRegex = capabilities["reference-regex"] as? String ?? ""
+        modRewriteWorking = capabilities["mod-rewrite-working"] as? Bool ?? false
+        user = CoreUser(capabilities: capabilities["user"] as? [String: Any] ?? [:])
+        canCreateAppToken = capabilities["can-create-app-token"] as? Bool
     }
 }
