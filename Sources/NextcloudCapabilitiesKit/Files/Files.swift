@@ -15,6 +15,7 @@ public struct Files: Equatable, Sendable {
     public let chunkedUpload: ChunkedUpload?
     public let comments: Bool
     public let undelete: Bool
+    public let deleteFromTrash: Bool
     public let versioning: Bool
     public let versionLabeling: Bool
     public let versionDeletion: Bool
@@ -37,6 +38,7 @@ public struct Files: Equatable, Sendable {
         chunkedUpload = ChunkedUpload(filesCapabilities: capabilities)
         comments = capabilities["comments"] as? Bool ?? false
         undelete = capabilities["undelete"] as? Bool ?? false
+        deleteFromTrash = capabilities["delete_from_trash"] as? Bool ?? false
         versioning = capabilities["versioning"] as? Bool ?? false
         versionLabeling = capabilities["version_labeling"] as? Bool ?? false
         versionDeletion = capabilities["version_deletion"] as? Bool ?? false

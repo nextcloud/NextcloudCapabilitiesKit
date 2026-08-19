@@ -25,6 +25,7 @@ class FilesTests: XCTestCase {
                 ],
                 "comments": false,
                 "undelete": true,
+                "delete_from_trash": true,
                 "versioning": false,
                 "version_labeling": true,
                 "version_deletion": false,
@@ -54,6 +55,7 @@ class FilesTests: XCTestCase {
         XCTAssertNotNil(files?.directEditing, "Direct Editing should be initialized")
         XCTAssertEqual(files?.comments, false, "Comments should be false")
         XCTAssertEqual(files?.undelete, true, "Undelete should be true")
+        XCTAssertEqual(files?.deleteFromTrash, true, "Delete from trash should be true")
         XCTAssertEqual(files?.versioning, false, "Versioning should be false")
         XCTAssertEqual(files?.versionLabeling, true, "Version Labeling should be true")
         XCTAssertEqual(files?.versionDeletion, false, "Version Deletion should be false")
@@ -98,5 +100,6 @@ class FilesTests: XCTestCase {
         XCTAssertEqual(files?.versionDeletion, false, "Version Deletion should be false")
         XCTAssertNil(files?.chunkedUpload, "Chunked Upload should be nil when not provided")
         XCTAssertNil(files?.locking, "Locking should be nil when not provided")
+        XCTAssertFalse(files?.deleteFromTrash ?? true, "Delete from trash should default to false when not provided")
     }
 }
