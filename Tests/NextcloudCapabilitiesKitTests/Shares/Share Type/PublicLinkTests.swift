@@ -10,21 +10,26 @@ final class PublicLinkTests: XCTestCase {
             "public": [
                 "enabled": true,
                 "upload": false,
-                "supports_upload_only": true,
-                "multiple": false,
+                "upload_files_drop": true,
+                "send_mail": true,
+                "custom_tokens": true,
+                "multiple_links": false,
                 "password": [
                     "askForOptionalPassword": true,
                     "enforced": false
                 ],
                 "expire_date": [
+                    "enabled": true,
                     "days": 10,
                     "enforced": true
                 ],
                 "expire_date_internal": [
+                    "enabled": true,
                     "days": 5,
                     "enforced": true
                 ],
                 "expire_date_remote": [
+                    "enabled": true,
                     "days": 7,
                     "enforced": false
                 ]
@@ -37,13 +42,18 @@ final class PublicLinkTests: XCTestCase {
         XCTAssertEqual(publicLink?.enabled, true, "Enabled should be true")
         XCTAssertEqual(publicLink?.allowUpload, false, "AllowUpload should be false")
         XCTAssertEqual(publicLink?.supportsUploadOnly, true, "SupportsUploadOnly should be true")
+        XCTAssertEqual(publicLink?.sendMail, true, "SendMail should be true")
+        XCTAssertEqual(publicLink?.customTokens, true, "CustomTokens should be true")
         XCTAssertEqual(publicLink?.askOptionalPassword, true, "AskOptionalPassword should be true")
         XCTAssertEqual(publicLink?.passwordEnforced, false, "PasswordEnforced should be false")
         XCTAssertEqual(publicLink?.expireDateEnforced, true, "ExpireDateEnforced should be true")
+        XCTAssertEqual(publicLink?.expireDateEnabled, true, "ExpireDateEnabled should be true")
         XCTAssertEqual(publicLink?.expireDateDays, 10, "ExpireDateDays should be 10")
         XCTAssertEqual(publicLink?.internalExpireDateEnforced, true, "InternalExpireDateEnforced should be true")
+        XCTAssertEqual(publicLink?.internalExpireDateEnabled, true, "InternalExpireDateEnabled should be true")
         XCTAssertEqual(publicLink?.internalExpireDateDays, 5, "InternalExpireDateDays should be 5")
         XCTAssertEqual(publicLink?.remoteExpireDateEnforced, false, "RemoteExpireDateEnforced should be false")
+        XCTAssertEqual(publicLink?.remoteExpireDateEnabled, true, "RemoteExpireDateEnabled should be true")
         XCTAssertEqual(publicLink?.remoteExpireDateDays, 7, "RemoteExpireDateDays should be 7")
         XCTAssertEqual(publicLink?.multipleAllowed, false, "MultipleAllowed should be false")
     }
