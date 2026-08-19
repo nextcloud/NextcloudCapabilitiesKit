@@ -4,8 +4,8 @@
 import Foundation
 
 public struct User: Equatable, Sendable {
-    let sendMail: Bool
-    let expireDateEnabled: Bool
+    public let sendMail: Bool
+    public let expireDateEnabled: Bool
 
     init?(filesSharingCapabilities: [String: Any]) {
         guard let userCaps = filesSharingCapabilities["user"] as? [String: Any] else {

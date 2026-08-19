@@ -4,8 +4,8 @@
 import Foundation
 
 public struct Group: Equatable, Sendable {
-    let enabled: Bool
-    let expireDateEnabled: Bool
+    public let enabled: Bool
+    public let expireDateEnabled: Bool
 
     init?(filesSharingCapabilities: [String: Any]) {
         guard let groupCaps = filesSharingCapabilities["group"] as? [String: Any] else {

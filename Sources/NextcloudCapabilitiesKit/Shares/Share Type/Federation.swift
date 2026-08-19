@@ -4,10 +4,10 @@
 import Foundation
 
 public struct Federation: Equatable, Sendable {
-    let outgoing: Bool
-    let incoming: Bool
-    let expireDateEnabled: Bool
-    let expireDateSupported: Bool
+    public let outgoing: Bool
+    public let incoming: Bool
+    public let expireDateEnabled: Bool
+    public let expireDateSupported: Bool
 
     init?(filesSharingCapabilities: [String: Any]) {
         guard let federationCaps = filesSharingCapabilities["federation"] as? [String: Any] else {
