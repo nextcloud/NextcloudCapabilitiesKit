@@ -22,11 +22,10 @@ downloading a separate Swift toolchain. The state file remains
 review-gated: merging a sync PR updates the processed revision, which the next
 scheduled poll observes without directly mutating `main` from the agent.
 
-If GitHub's compare API returns its 300-file limit, the agent creates a
-state-only draft PR recording `blockedComparison` without advancing the
-revision. Once merged, subsequent runs report the same range as already
-blocked instead of retrying it. Manual partitioning or a deliberate state
-advance is then required.
+The detector compares only the configured capability-provider paths between
+the two upstream commit snapshots. Large unrelated server changes therefore
+do not consume GitHub's 300-file comparison limit. Added, removed, and modified
+provider or registration files are reported for agent review.
 
 The workflow authenticates Copilot with the repository secret
 `COPILOT_GITHUB_TOKEN`; the token must be a fine-grained PAT with the Copilot

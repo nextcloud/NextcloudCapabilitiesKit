@@ -82,37 +82,6 @@ def load_revision(state: dict[str, Any], repository: str) -> str:
     return revision
 
 
-def load_blocked_comparison(state: dict[str, Any], repository: str) -> dict[str, str] | None:
-    upstreams = state.get("upstreams")
-    if not isinstance(upstreams, dict):
-        raise CapabilitySyncError("The sync state must contain an upstreams object")
-
-    upstream = upstreams.get(repository)
-    if not isinstance(upstream, dict):
-        raise CapabilitySyncError(f"The sync state has no revision for {repository}")
-
-    blocked = upstream.get("blockedComparison")
-    if blocked is None:
-        return None
-    if not isinstance(blocked, dict):
-        raise CapabilitySyncError(f"The blocked comparison for {repository} must be an object")
-
-    from_revision = blocked.get("fromRevision")
-    to_revision = blocked.get("toRevision")
-    reason = blocked.get("reason")
-    if (
-        not isinstance(from_revision, str)
-        or not re.fullmatch(r"[0-9a-f]{7,64}", from_revision)
-        or not isinstance(to_revision, str)
-        or not re.fullmatch(r"[0-9a-f]{7,64}", to_revision)
-        or not isinstance(reason, str)
-        or not reason
-    ):
-        raise CapabilitySyncError(f"The blocked comparison for {repository} is invalid")
-
-    return {"fromRevision": from_revision, "toRevision": to_revision, "reason": reason}
-
-
 def api_request(api_url: str, path: str, token: str | None) -> dict[str, Any]:
     url = f"{api_url.rstrip('/')}/{path.lstrip('/')}"
     headers = {
@@ -154,41 +123,79 @@ def is_capability_source(path: str, source_paths: dict[str, Any]) -> bool:
     return any(path.endswith(registration_file) for registration_file in source_paths.get("registrationFiles", []))
 
 
-def capability_files(compare: dict[str, Any], source_paths: dict[str, Any]) -> list[ChangedFile]:
-    files = compare.get("files")
-    if not isinstance(files, list):
-        raise CapabilitySyncError("The GitHub compare response did not contain a files array")
-    if len(files) >= 300:
-        raise CapabilitySyncError(
-            "The GitHub compare response reached its 300-file limit; "
-            "advance the sync state before relying on this report"
-        )
+def tree_files(
+    api_url: str,
+    repository: str,
+    revision: str,
+    token: str | None,
+) -> dict[str, str]:
+    encoded_revision = urllib.parse.quote(revision, safe="")
+    recursive_tree = api_request(
+        api_url,
+        f"repos/{repository}/git/trees/{encoded_revision}?recursive=1",
+        token,
+    )
+    entries = recursive_tree.get("tree")
+    if not isinstance(entries, list):
+        raise CapabilitySyncError(f"The GitHub tree response for {repository} did not contain a tree array")
 
-    matches: list[ChangedFile] = []
-    for item in files:
-        if not isinstance(item, dict):
+    if not recursive_tree.get("truncated", False):
+        return {
+            item["path"]: item["sha"]
+            for item in entries
+            if isinstance(item, dict)
+            and item.get("type") == "blob"
+            and isinstance(item.get("path"), str)
+            and isinstance(item.get("sha"), str)
+        }
+
+    files: dict[str, str] = {}
+    pending = [("", revision)]
+    while pending:
+        prefix, tree_revision = pending.pop()
+        encoded_tree = urllib.parse.quote(tree_revision, safe="")
+        tree = api_request(api_url, f"repos/{repository}/git/trees/{encoded_tree}", token)
+        subtree_entries = tree.get("tree")
+        if not isinstance(subtree_entries, list):
+            raise CapabilitySyncError(f"The GitHub tree response for {repository} did not contain a tree array")
+        if tree.get("truncated", False):
+            raise CapabilitySyncError(f"The GitHub tree response for {repository} remained truncated while walking subtrees")
+
+        for item in subtree_entries:
+            if not isinstance(item, dict):
+                continue
+            item_path = item.get("path")
+            item_sha = item.get("sha")
+            if not isinstance(item_path, str) or not isinstance(item_sha, str):
+                continue
+            path = f"{prefix}/{item_path}" if prefix else item_path
+            if item.get("type") == "tree":
+                pending.append((path, item_sha))
+            elif item.get("type") == "blob":
+                files[path] = item_sha
+
+    return files
+
+
+def capability_tree_changes(
+    from_files: dict[str, str],
+    to_files: dict[str, str],
+    source_paths: dict[str, Any],
+) -> list[ChangedFile]:
+    paths = sorted(
+        path
+        for path in set(from_files) | set(to_files)
+        if is_capability_source(path, source_paths)
+    )
+    changed: list[ChangedFile] = []
+    for path in paths:
+        from_sha = from_files.get(path)
+        to_sha = to_files.get(path)
+        if from_sha == to_sha:
             continue
-
-        filename = item.get("filename")
-        status = item.get("status")
-        previous_filename = item.get("previous_filename")
-        if not isinstance(filename, str) or not isinstance(status, str):
-            continue
-        if previous_filename is not None and not isinstance(previous_filename, str):
-            previous_filename = None
-
-        if is_capability_source(filename, source_paths) or (
-            previous_filename is not None and is_capability_source(previous_filename, source_paths)
-        ):
-            matches.append(
-                ChangedFile(
-                    filename=filename,
-                    status=status,
-                    previous_filename=previous_filename,
-                )
-            )
-
-    return matches
+        status = "added" if from_sha is None else "removed" if to_sha is None else "modified"
+        changed.append(ChangedFile(filename=path, status=status, previous_filename=None))
+    return changed
 
 
 def report(
@@ -196,12 +203,10 @@ def report(
     from_revision: str,
     to_revision: str,
     files: list[ChangedFile],
-    status: str = "ok",
-    blocked_comparison: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     value: dict[str, Any] = {
         "schemaVersion": 1,
-        "status": status,
+        "status": "ok",
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "upstream": {
             "repository": upstream.repository,
@@ -216,46 +221,20 @@ def report(
                 "filename": file.filename,
                 "status": file.status,
                 "previousFilename": file.previous_filename,
-                "url": f"https://github.com/{upstream.repository}/blob/{to_revision}/{file.filename}",
+                "url": (
+                    f"https://github.com/{upstream.repository}/compare/{from_revision}...{to_revision}"
+                    if file.status == "removed"
+                    else f"https://github.com/{upstream.repository}/blob/{to_revision}/{file.filename}"
+                ),
             }
             for file in files
         ],
     }
-    if blocked_comparison is not None:
-        value["blockedComparison"] = blocked_comparison
     return value
 
 
 def markdown_report(value: dict[str, Any]) -> str:
     upstream = value["upstream"]
-    status = value.get("status", "ok")
-    if status == "comparison_too_large":
-        return "\n".join(
-            [
-                "# Nextcloud capability comparison requires manual review",
-                "",
-                f"Upstream: [`{upstream['repository']}`]({upstream['compareURL']})",
-                "",
-                f"Compared `{upstream['fromRevision']}` to `{upstream['toRevision']}` on `{upstream['branch']}`.",
-                "",
-                "GitHub returned its 300-file compare limit. No capability conclusion was made.",
-                "Record the blocked comparison in the sync state, then manually partition the range or advance the state.",
-                "",
-            ]
-        )
-    if status == "comparison_already_blocked":
-        return "\n".join(
-            [
-                "# Nextcloud capability comparison is already blocked",
-                "",
-                f"Upstream: [`{upstream['repository']}`]({upstream['compareURL']})",
-                "",
-                f"The range `{upstream['fromRevision']}` to `{upstream['toRevision']}` was previously marked as oversized.",
-                "Manual partitioning or state advancement is required before retrying it.",
-                "",
-            ]
-        )
-
     lines = [
         "# Nextcloud capability source change",
         "",
@@ -367,47 +346,14 @@ def main() -> int:
     if not isinstance(to_revision, str) or not re.fullmatch(r"[0-9a-f]{7,64}", to_revision):
         raise CapabilitySyncError(f"Could not read the current commit SHA for {upstream.repository}")
 
-    blocked_comparison = load_blocked_comparison(state, upstream.repository)
-    if blocked_comparison is not None and (
-        blocked_comparison["fromRevision"] == from_revision
-        and blocked_comparison["toRevision"] == to_revision
-    ):
-        result = report(
-            upstream,
-            from_revision,
-            to_revision,
-            [],
-            status="comparison_already_blocked",
-            blocked_comparison=blocked_comparison,
-        )
-    else:
-        encoded_from = urllib.parse.quote(from_revision, safe="")
-        encoded_to = urllib.parse.quote(to_revision, safe="")
-        comparison = api_request(
-            arguments.api_url,
-            f"repos/{upstream.repository}/compare/{encoded_from}...{encoded_to}",
-            arguments.token,
-        )
-        try:
-            changed_files = capability_files(comparison, source_paths)
-        except CapabilitySyncError as error:
-            if "300-file limit" not in str(error):
-                raise
-            blocked_comparison = {
-                "fromRevision": from_revision,
-                "toRevision": to_revision,
-                "reason": "github-compare-file-limit",
-            }
-            result = report(
-                upstream,
-                from_revision,
-                to_revision,
-                [],
-                status="comparison_too_large",
-                blocked_comparison=blocked_comparison,
-            )
-        else:
-            result = report(upstream, from_revision, to_revision, changed_files)
+    from_files = tree_files(arguments.api_url, upstream.repository, from_revision, arguments.token)
+    to_files = tree_files(arguments.api_url, upstream.repository, to_revision, arguments.token)
+    result = report(
+        upstream,
+        from_revision,
+        to_revision,
+        capability_tree_changes(from_files, to_files, source_paths),
+    )
 
     arguments.output.parent.mkdir(parents=True, exist_ok=True)
     arguments.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")

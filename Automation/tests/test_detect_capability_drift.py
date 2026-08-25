@@ -8,12 +8,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from detect_capability_drift import (
-    CapabilitySyncError,
     ChangedFile,
     Upstream,
-    capability_files,
+    capability_tree_changes,
     is_capability_source,
-    load_blocked_comparison,
     markdown_report,
     report,
     write_github_output,
@@ -39,16 +37,19 @@ class CapabilitySourceTests(unittest.TestCase):
     def test_ignores_unrelated_app_source(self) -> None:
         self.assertFalse(is_capability_source("apps/dav/lib/Connector/Sabre/ServerFactory.php", self.source_paths))
 
-    def test_includes_renamed_provider(self) -> None:
-        changed = capability_files(
+    def test_detects_capability_changes_from_tree_snapshots(self) -> None:
+        changed = capability_tree_changes(
             {
-                "files": [
-                    {
-                        "filename": "apps/dav/lib/DavCapabilities.php",
-                        "status": "renamed",
-                        "previous_filename": "apps/dav/lib/Capabilities.php",
-                    }
-                ]
+                "core/AppInfo/Capabilities.php": "core-old",
+                "apps/dav/lib/Capabilities.php": "dav-same",
+                "apps/dav/appinfo/info.xml": "dav-registration-old",
+                "unrelated.php": "unrelated-old",
+            },
+            {
+                "core/AppInfo/Capabilities.php": "core-new",
+                "apps/dav/lib/Capabilities.php": "dav-same",
+                "apps/files/lib/FilesCapabilities.php": "files-new",
+                "unrelated.php": "unrelated-new",
             },
             self.source_paths,
         )
@@ -57,61 +58,22 @@ class CapabilitySourceTests(unittest.TestCase):
             changed,
             [
                 ChangedFile(
-                    filename="apps/dav/lib/DavCapabilities.php",
-                    status="renamed",
-                    previous_filename="apps/dav/lib/Capabilities.php",
-                )
+                    filename="apps/dav/appinfo/info.xml",
+                    status="removed",
+                    previous_filename=None,
+                ),
+                ChangedFile(
+                    filename="apps/files/lib/FilesCapabilities.php",
+                    status="added",
+                    previous_filename=None,
+                ),
+                ChangedFile(
+                    filename="core/AppInfo/Capabilities.php",
+                    status="modified",
+                    previous_filename=None,
+                ),
             ],
         )
-
-    def test_rejects_truncated_compare_response(self) -> None:
-        with self.assertRaisesRegex(CapabilitySyncError, "300-file limit"):
-            capability_files({"files": [{}] * 300}, self.source_paths)
-
-    def test_loads_blocked_comparison(self) -> None:
-        blocked = load_blocked_comparison(
-            {
-                "upstreams": {
-                    "nextcloud/server": {
-                        "revision": "a" * 40,
-                        "blockedComparison": {
-                            "fromRevision": "a" * 40,
-                            "toRevision": "b" * 40,
-                            "reason": "github-compare-file-limit",
-                        },
-                    }
-                }
-            },
-            "nextcloud/server",
-        )
-
-        self.assertEqual(
-            blocked,
-            {
-                "fromRevision": "a" * 40,
-                "toRevision": "b" * 40,
-                "reason": "github-compare-file-limit",
-            },
-        )
-
-    def test_renders_oversized_comparison_as_manual_review(self) -> None:
-        value = report(
-            Upstream(repository="nextcloud/server", branch="master"),
-            "a" * 40,
-            "b" * 40,
-            [],
-            status="comparison_too_large",
-            blocked_comparison={
-                "fromRevision": "a" * 40,
-                "toRevision": "b" * 40,
-                "reason": "github-compare-file-limit",
-            },
-        )
-
-        rendered = markdown_report(value)
-
-        self.assertIn("requires manual review", rendered)
-        self.assertIn("300-file compare limit", rendered)
 
     def test_builds_human_readable_report(self) -> None:
         value = report(
