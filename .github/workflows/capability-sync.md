@@ -15,15 +15,15 @@ engine:
   id: copilot
   copilot-sdk: true
 
+runs-on: ubuntu-24.04
 strict: true
 network: defaults
 timeout-minutes: 30
 
 steps:
-  - name: Set up Swift 6
-    uses: swift-actions/setup-swift@v3
-    with:
-      swift-version: "6.0"
+  - name: Verify Swift toolchain
+    shell: bash
+    run: swift --version
   - name: Build SwiftFormat
     shell: bash
     run: |

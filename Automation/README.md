@@ -15,9 +15,10 @@ workflow or webhook in the upstream repository.
 interprets changed provider sources, and opens at most one draft pull request
 at a time for a new upstream revision.
 
-The workflow provisions Swift 6 in the agent job and builds the pinned
-SwiftFormat package before the agent starts, so `swift test` and
-`swiftformat --lint .` are available inside the sandbox. The state file remains
+The workflow uses GitHub's Ubuntu 24.04 runner, which includes Swift 6, and
+builds the pinned SwiftFormat package before the agent starts. This makes
+`swift test` and `swiftformat --lint .` available inside the sandbox without
+downloading a separate Swift toolchain. The state file remains
 review-gated: merging a sync PR updates the processed revision, which the next
 scheduled poll observes without directly mutating `main` from the agent.
 
