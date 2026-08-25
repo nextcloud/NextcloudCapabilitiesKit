@@ -35,6 +35,7 @@ steps:
         exit 1
       fi
       swiftformat_root="$(dirname "$swiftformat_package")"
+      swift build --package-path "$swiftformat_root" --configuration release --product swiftformat
       swiftformat_bin="$(swift build --package-path "$swiftformat_root" --configuration release --product swiftformat --show-bin-path)"
       echo "$swiftformat_bin" >> "$GITHUB_PATH"
       "$swiftformat_bin/swiftformat" --version
