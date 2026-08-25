@@ -1,0 +1,10 @@
+{
+  "SPDX-FileCopyrightText": "2026 Nextcloud GmbH and Nextcloud contributors",
+  "SPDX-License-Identifier": "LGPL-3.0-or-later",
+  "schemaVersion": 1,
+  "upstreams": {
+    "nextcloud/server": {
+      "revision": "bcaf7e5646f6b4c37f76ea65cbe3d490fddacc8f"
+    }
+  }
+}

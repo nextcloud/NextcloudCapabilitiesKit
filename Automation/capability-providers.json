@@ -1,0 +1,22 @@
+{
+  "SPDX-FileCopyrightText": "2026 Nextcloud GmbH and Nextcloud contributors",
+  "SPDX-License-Identifier": "LGPL-3.0-or-later",
+  "schemaVersion": 1,
+  "upstream": {
+    "repository": "nextcloud/server",
+    "branch": "master"
+  },
+  "sourcePaths": {
+    "exact": [
+      "core/AppInfo/Capabilities.php"
+    ],
+    "providerFileSuffixes": [
+      "Capability.php",
+      "Capabilities.php"
+    ],
+    "registrationFiles": [
+      "appinfo/Application.php",
+      "appinfo/info.xml"
+    ]
+  }
+}
