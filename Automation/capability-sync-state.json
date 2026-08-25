@@ -4,7 +4,12 @@
   "schemaVersion": 1,
   "upstreams": {
     "nextcloud/server": {
-      "revision": "bcaf7e5646f6b4c37f76ea65cbe3d490fddacc8f"
+      "revision": "bcaf7e5646f6b4c37f76ea65cbe3d490fddacc8f",
+      "blockedComparison": {
+        "fromRevision": "bcaf7e5646f6b4c37f76ea65cbe3d490fddacc8f",
+        "toRevision": "1add8ce1149a2f1df3196aff1dfe467d6fa87080",
+        "reason": "github-compare-file-limit"
+      }
     }
   }
 }
