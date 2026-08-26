@@ -29,6 +29,8 @@ public struct Theming: Equatable, Sendable {
     public let inverted: Bool
     public let cacheBuster: String
     public let enabledThemes: [String]
+    public let toastTimeout: Int?
+    public let toastTimeoutValues: [Int]
 
     @available(*, deprecated, renamed: "logoURL")
     public var logoUrl: URL? {
@@ -76,5 +78,8 @@ public struct Theming: Equatable, Sendable {
         inverted = capabilities["inverted"] as? Bool ?? false
         cacheBuster = capabilities["cacheBuster"] as? String ?? ""
         enabledThemes = capabilities["enabledThemes"] as? [String] ?? []
+        // Absent on servers older than the toast timeout feature; treat as unset.
+        toastTimeout = capabilities["toastTimeout"] as? Int
+        toastTimeoutValues = capabilities["toastTimeoutValues"] as? [Int] ?? []
     }
 }
