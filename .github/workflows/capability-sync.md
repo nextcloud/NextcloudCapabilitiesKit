@@ -52,6 +52,7 @@ safe-outputs:
     title-prefix: "feat: sync Nextcloud capabilities: "
     branch-prefix: "automation/capability-sync/"
     draft: true
+    assignees: [claucambra]
     base-branch: main
     allowed-files:
       - "Automation/capability-sync-state.json"

@@ -4,11 +4,6 @@
       "repo": "github/gh-aw-actions/setup",
       "version": "v0.86.2",
       "sha": "6aab9e5b5c91c615506061f09bedd81a23babe3c"
-    },
-    "swift-actions/setup-swift@v3": {
-      "repo": "swift-actions/setup-swift",
-      "version": "v3",
-      "sha": "364295d9c23900ce04d4e5cc708387921b4e50f9"
     }
   }
 }
