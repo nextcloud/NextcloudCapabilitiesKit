@@ -42,7 +42,7 @@ steps:
 
 tools:
   edit: true
-  bash: [python3, cat, find, git, gh, rg, swift, swiftformat]
+  bash: [awk, cat, curl, find, git, gh, head, rg, sed, swift, swiftformat, tail]
   github:
     mode: gh-proxy
     toolsets: [repos, pull_requests]
@@ -73,8 +73,11 @@ Synchronize verified public capability changes from `nextcloud/server` with this
 Swift package. The workflow runs only in this repository; do not modify or
 write to the upstream repository.
 
-1. Run `python3 Automation/detect_capability_drift.py`, then read both files
-   under `.automation/`.
+1. Run `GITHUB_OUTPUT=/tmp/gh-aw/agent/gh_output.txt python3
+   Automation/detect_capability_drift.py`, then read both files under
+   `.automation/`. When inspecting downloaded files under `/tmp/gh-aw/agent/`,
+   use the allowed shell commands such as `cat`, `head`, or `sed`; do not use
+   the `view` tool for those temporary files.
 2. If `hasCapabilitySourceChanges` is `false`, call `noop`
    with the compared revisions. Do not modify files.
 3. The detector compares only the configured capability-provider paths between
