@@ -23,3 +23,14 @@ path = [
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2025 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "LGPL-3.0-or-later"
+
+[[annotations]]
+path = [
+    ".github/aw/actions-lock.json",
+    ".github/workflows/capability-sync.lock.yml",
+    "Automation/capability-providers.json",
+    "Automation/capability-sync-state.json"
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "LGPL-3.0-or-later"
