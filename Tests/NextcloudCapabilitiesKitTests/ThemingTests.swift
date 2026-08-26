@@ -22,12 +22,19 @@ class ThemingTests: XCTestCase {
                 "background-plain": true,
                 "background-default": false,
                 "logoheader": "https://example.com/logoheader",
-                "favicon": "https://example.com/favicon"
+                "favicon": "https://example.com/favicon",
+                "toastTimeout": 15000,
+                "toastTimeoutValues": [7000, 15000, 30000, -1]
             ]
         ]
 
         let theming = Theming(capabilities: capabilities)
         XCTAssertNotNil(theming, "Theming instance should be created with valid input")
+        XCTAssertEqual(theming?.toastTimeout, 15000, "Theming toastTimeout should match the provided value")
+        XCTAssertEqual(
+            theming?.toastTimeoutValues, [7000, 15000, 30000, -1],
+            "Theming toastTimeoutValues should match the provided value"
+        )
         XCTAssertEqual(theming?.name, "Theme Name", "Theming name should match the provided value")
         XCTAssertEqual(theming?.url, URL(string: "https://example.com"), "Theming URL should match the provided URL")
         XCTAssertEqual(theming?.slogan, "Theme Slogan", "Theming slogan should match the provided value")
@@ -71,5 +78,10 @@ class ThemingTests: XCTestCase {
         XCTAssertEqual(theming?.url, nil, "Theming URL should default to nil with partial input")
         XCTAssertEqual(theming?.logoUrl, nil, "Theming logo URL should default to nil with partial input")
         XCTAssertEqual(theming?.backgroundColor, "", "Theming backgroundColor should default to an empty string with partial input")
+        XCTAssertNil(theming?.toastTimeout, "Theming toastTimeout should default to nil without a value from the server")
+        XCTAssertEqual(
+            theming?.toastTimeoutValues, [],
+            "Theming toastTimeoutValues should default to an empty array without a value from the server"
+        )
     }
 }
