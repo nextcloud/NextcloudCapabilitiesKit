@@ -55,7 +55,9 @@ safe-outputs:
     base-branch: main
     allowed-files:
       - "Automation/capability-sync-state.json"
+      - "Sources/NextcloudCapabilitiesKit/*.swift"
       - "Sources/NextcloudCapabilitiesKit/**/*.swift"
+      - "Tests/NextcloudCapabilitiesKitTests/*.swift"
       - "Tests/NextcloudCapabilitiesKitTests/**/*.swift"
     protected-files: blocked
     max-patch-files: 25
