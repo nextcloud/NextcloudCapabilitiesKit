@@ -21,6 +21,7 @@ final class PublicLinkTests: XCTestCase {
                 "expire_date": [
                     "enabled": true,
                     "days": 10,
+                    "default_days": 5,
                     "enforced": true
                 ],
                 "expire_date_internal": [
@@ -49,6 +50,7 @@ final class PublicLinkTests: XCTestCase {
         XCTAssertEqual(publicLink?.expireDateEnforced, true, "ExpireDateEnforced should be true")
         XCTAssertEqual(publicLink?.expireDateEnabled, true, "ExpireDateEnabled should be true")
         XCTAssertEqual(publicLink?.expireDateDays, 10, "ExpireDateDays should be 10")
+        XCTAssertEqual(publicLink?.expireDateDefaultDays, 5, "ExpireDateDefaultDays should be 5")
         XCTAssertEqual(publicLink?.internalExpireDateEnforced, true, "InternalExpireDateEnforced should be true")
         XCTAssertEqual(publicLink?.internalExpireDateEnabled, true, "InternalExpireDateEnabled should be true")
         XCTAssertEqual(publicLink?.internalExpireDateDays, 5, "InternalExpireDateDays should be 5")
@@ -87,6 +89,7 @@ final class PublicLinkTests: XCTestCase {
         XCTAssertEqual(publicLink?.passwordEnforced, false, "PasswordEnforced should default to false")
         XCTAssertEqual(publicLink?.expireDateEnforced, false, "ExpireDateEnforced should default to false")
         XCTAssertEqual(publicLink?.expireDateDays, 1, "ExpireDateDays should default to 1")
+        XCTAssertNil(publicLink?.expireDateDefaultDays, "ExpireDateDefaultDays should default to nil")
         XCTAssertEqual(publicLink?.internalExpireDateEnforced, false, "InternalExpireDateEnforced should default to false")
         XCTAssertEqual(publicLink?.internalExpireDateDays, 1, "InternalExpireDateDays should default to 1")
         XCTAssertEqual(publicLink?.remoteExpireDateEnforced, false, "RemoteExpireDateEnforced should default to false")
