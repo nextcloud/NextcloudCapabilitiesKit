@@ -14,6 +14,7 @@ public struct PublicLink: Equatable, Sendable {
     public let expireDateEnabled: Bool
     public let expireDateEnforced: Bool
     public let expireDateDays: Int
+    public let expireDateDefaultDays: Int
     public let internalExpireDateEnabled: Bool
     public let internalExpireDateEnforced: Bool
     public let internalExpireDateDays: Int
@@ -50,10 +51,13 @@ public struct PublicLink: Equatable, Sendable {
         if let expireDateCapabilities = publicLinkCaps["expire_date"] as? [String: Any] {
             expireDateEnabled = expireDateCapabilities["enabled"] as? Bool ?? false
             expireDateDays = expireDateCapabilities["days"] as? Int ?? 1
+            // Servers without this field default the suggested expiry to the max allowed days.
+            expireDateDefaultDays = expireDateCapabilities["default_days"] as? Int ?? expireDateDays
             expireDateEnforced = expireDateCapabilities["enforced"] as? Bool ?? false
         } else {
             expireDateEnabled = false
             expireDateDays = 1
+            expireDateDefaultDays = 1
             expireDateEnforced = false
         }
 

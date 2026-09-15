@@ -21,6 +21,7 @@ final class PublicLinkTests: XCTestCase {
                 "expire_date": [
                     "enabled": true,
                     "days": 10,
+                    "default_days": 7,
                     "enforced": true
                 ],
                 "expire_date_internal": [
@@ -49,6 +50,7 @@ final class PublicLinkTests: XCTestCase {
         XCTAssertEqual(publicLink?.expireDateEnforced, true, "ExpireDateEnforced should be true")
         XCTAssertEqual(publicLink?.expireDateEnabled, true, "ExpireDateEnabled should be true")
         XCTAssertEqual(publicLink?.expireDateDays, 10, "ExpireDateDays should be 10")
+        XCTAssertEqual(publicLink?.expireDateDefaultDays, 7, "ExpireDateDefaultDays should be 7")
         XCTAssertEqual(publicLink?.internalExpireDateEnforced, true, "InternalExpireDateEnforced should be true")
         XCTAssertEqual(publicLink?.internalExpireDateEnabled, true, "InternalExpireDateEnabled should be true")
         XCTAssertEqual(publicLink?.internalExpireDateDays, 5, "InternalExpireDateDays should be 5")
@@ -56,6 +58,30 @@ final class PublicLinkTests: XCTestCase {
         XCTAssertEqual(publicLink?.remoteExpireDateEnabled, true, "RemoteExpireDateEnabled should be true")
         XCTAssertEqual(publicLink?.remoteExpireDateDays, 7, "RemoteExpireDateDays should be 7")
         XCTAssertEqual(publicLink?.multipleAllowed, false, "MultipleAllowed should be false")
+    }
+
+    func testPublicLinkInitializationWithoutDefaultDays() {
+        // Older servers do not send `default_days`; it should fall back to `days`.
+        let filesSharingCapabilities: [String: Any] = [
+            "public": [
+                "enabled": true,
+                "expire_date": [
+                    "enabled": true,
+                    "days": 10,
+                    "enforced": true
+                ]
+            ]
+        ]
+
+        let publicLink = PublicLink(filesSharingCapabilities: filesSharingCapabilities)
+
+        XCTAssertNotNil(publicLink, "PublicLink instance should not be nil")
+        XCTAssertEqual(publicLink?.expireDateDays, 10, "ExpireDateDays should be 10")
+        XCTAssertEqual(
+            publicLink?.expireDateDefaultDays,
+            10,
+            "ExpireDateDefaultDays should default to ExpireDateDays when absent"
+        )
     }
 
     func testInvalidPublicLinkInitialization() {
@@ -87,6 +113,7 @@ final class PublicLinkTests: XCTestCase {
         XCTAssertEqual(publicLink?.passwordEnforced, false, "PasswordEnforced should default to false")
         XCTAssertEqual(publicLink?.expireDateEnforced, false, "ExpireDateEnforced should default to false")
         XCTAssertEqual(publicLink?.expireDateDays, 1, "ExpireDateDays should default to 1")
+        XCTAssertEqual(publicLink?.expireDateDefaultDays, 1, "ExpireDateDefaultDays should default to expireDateDays (1)")
         XCTAssertEqual(publicLink?.internalExpireDateEnforced, false, "InternalExpireDateEnforced should default to false")
         XCTAssertEqual(publicLink?.internalExpireDateDays, 1, "InternalExpireDateDays should default to 1")
         XCTAssertEqual(publicLink?.remoteExpireDateEnforced, false, "RemoteExpireDateEnforced should default to false")
