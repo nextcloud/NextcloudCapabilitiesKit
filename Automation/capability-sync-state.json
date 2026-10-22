@@ -4,7 +4,7 @@
   "schemaVersion": 1,
   "upstreams": {
     "nextcloud/server": {
-      "revision": "6def86ccced9de7245151d49b9bd4085385982e8"
+      "revision": "0a89af3ae5f54e3979553d9d0046e74cf1b82206"
     }
   }
 }
